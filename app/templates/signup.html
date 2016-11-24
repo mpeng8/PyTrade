@@ -25,6 +25,13 @@
         <link rel="stylesheet" href="static/assets/css/animate.css">
         <link rel="stylesheet" href="static/assets/css/magnific-popup.css">
         <link rel="stylesheet" href="static/assets/css/odometer-theme-default.css">
+        <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">
+    	<!-- bootstrap theme -->
+    	<link href="static/assets/css/bootstrap-theme.css" rel="stylesheet">
+    	<!--external css-->
+    	<!-- font icon -->
+    	<link href="static/assets/css/elegant-icons-style.css" rel="stylesheet" />
+    	<link href="static/assets/css/font-awesome.css" rel="stylesheet" />
         <script>
         window.odometerOptions = {
           selector: '.odometer',
@@ -56,18 +63,56 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-xs-10">
-                            <a href="#" class="thumbnail logo">
-                                <img src="static/images/PyTradeLogo.png" style = "width: 150px; height:auto;"alt="" class="img-responsive">
+                            <a href="#">
+                                <img src="static/images/PyTradeLogo.png" style = "width: 150px; height:auto;"alt="">
                             </a>
                         </div>
                         <div class="col-md-1 col-md-offset-8 col-xs-2 text-center">
                           <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
                         </div>
                     </div>
-                    <div class="jumbotron">
-                        <h1><strong>PyTrade</strong></h1>
-			<br><br>
-                        <p><a class="btn btn-primary btn-lg" role="button" href = "signup">Sign Up</a> <a class="btn btn-lg btn-danger" role = "button" href = "login">Log in</a></p>
+		    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                    <div class="jumbotron"><h1 style="color:white;"><strong>PyTrade</strong></h1>
+			{% block content %}
+  			{% if session['logged_in'] %}
+			<p>You're logged in already</p>
+			{% else %}
+			<form action = "/aftersignup" method = "POST" class="login-form">  
+        		<div class="login-wrap">
+           		    <p class="login-img"><i class="icon_lock_alt"></i></p>
+            		    <div class="input-group">
+              		        <span class="input-group-addon"><i class="icon_profile"></i></span>
+              			<input type="username" name="username" class="form-control" placeholder="Please enter your name using only alphabets" autofocus>
+            		    </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon_mail_alt"></i></span>
+                        <input type="email" name="email" class="form-control" placeholder="Please enter your email address" autofocus>
+                        </div>
+            		    <div class="input-group">
+                		<span class="input-group-addon"><i class="icon_key_alt"></i></span>
+               	 		<input type="password" name="password" class="form-control" placeholder="Please use 6-12 alphabets,numbers or_!@#$% for password">
+            		    </div>
+                        <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                        <input type="password" name="re-password" class="form-control" placeholder="Please re-enter password">
+                        </div>
+            		    <input class="btn btn-primary btn-lg btn-block" type="submit" value = "Sign up">
+        		{% if error %}
+                        <p class=error style="color:red;font-weight:900;"><strong>Error:</strong> {{ error }}</p>
+                        {% endif %}
+			</div>
+      			</form>
+			{% endif %}
+			
+			{% endblock %}
                     </div>
                 </div>
             </div>
@@ -78,17 +123,17 @@
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="100ms">
                         <span class="typcn typcn-pencil x3"></span>
                         <h4>Feature One</h4>
-                        <p>educative definition of finacial words</p>
+                        <p>xxx.</p>
                     </div>
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="300ms">
                         <span class="typcn typcn-camera-outline x3"></span>
                         <h4>Feature Two</h4>
-                        <p>stock price and trend visualization</p>
+                        <p>xxx.</p>
                     </div>
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="500ms">
                         <span class="typcn typcn-bookmark x3"></span>
                         <h4>Feature Three</h4>
-                        <p>prediction of stock prices using Machine learning algorithms</p>
+                        <p>xxx.</p>
                     </div>
                 </div>
             </div>
@@ -102,19 +147,19 @@
                             <div class="row">
                                 <div class="col-md-offset-1 col-md-10">
                                     <h3>What we offer</h3>
-                                    <h5>Free account</h5>
-                                    <p>Financial strategies and information visualization</p>
+                                    <h5>Stuff</h5>
+                                    <p>Cool.</p>
                                 </div>
                             </div>
                             <div class="row text-center">
                                 <!-- set the numbers in assets/js/scripts.js  -->
                                 <div class="col-md-4 boxes col-xs-6 col-xs-offset-3 col-lg-4 col-lg-offset-1 col-md-offset-1 col-sm-6 wow fadeInUp">
                                     <h5>Number of active users</h5>
-                                    <h3 class="odometer 01">100000</h3>
+                                    <h3 class="odometer 01">00000</h3>
                                 </div>
                                 <div class="col-md-4 boxes col-xs-6 col-xs-offset-3 col-lg-4 col-lg-offset-2 col-md-offset-2 col-sm-6 wow fadeInUp" data-wow-delay="300ms">
                                     <h5>Revenue Created</h5>
-                                    <h3>$10000000000</h3>
+                                    <h3>$1000000</h3>
                                 </div>
                             </div>
                         </div>
