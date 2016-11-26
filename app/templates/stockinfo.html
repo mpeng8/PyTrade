@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>PyTrade |　Blank page template</title>
+    <title>PyTrade Stock Info</title>
 
     <!-- Bootstrap CSS -->
     <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -109,6 +109,7 @@
                         </ul>
                     </li>
                     <!-- inbox notificatoin end -->
+                    <!-- alert notification start-->
                     <!-- alert notification start-->
                     <li id="alert_notificatoin_bar" class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -224,7 +225,7 @@
                           <li><a class="" href="#">My followees</a></li>
                       </ul>
                   </li>
-
+                  
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_profile"></i>
@@ -253,18 +254,74 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-            <div class="row">
-              <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
-                <ol class="breadcrumb">
-                  <li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
-                  <li><i class="fa fa-bars"></i>Pages</li>
-                  <li><i class="fa fa-square-o"></i>Pages</li>
-                </ol>
-              </div>
-            </div>
+      		  <div class="row">
+      				<div class="col-lg-12">
+      					<h3 class="page-header"><i class="icon_desktop"></i>My Stock List</h3>
+      					<ol class="breadcrumb">
+      						<li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
+      						<li><i class="icon_desktop"></i>My Stock List</li>
+      						<li><i class="fa fa-area-chart" aria-hidden="true"></i>Stock historical data</li>
+      					</ol>
+      				</div>
+      			</div>
               <!-- page start-->
-              Page content goes here
+              <div class="row">
+                <div class="col-lg-6 col-md-9">
+                  <h4>Total: 3 stocks following</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <h3>VXGOG: CBOE EQUITY VIXON GOOGLE</h3>
+                </div>
+                <div class="col-lg-3">
+                  <button type="button" class="btn btn-default">Predict</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-5 col-sm-6">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <td><p class="text-left">Prev close</p></td>
+                          <td><p class="text-right">25.22</p></td>
+                          <td><p class="text-left">Day's range</p></td>
+                          <td><p class="text-right">17.07-19.45</p></td>
+                        </tr>
+                         <tr>
+                          <td><p class="text-left">Open</p></td>
+                          <td><p class="text-right">17.75</p></td>
+                          <td><p class="text-left">52wk Range</p></td>
+                          <td><p class="text-right">17.07-14.95</p></td>
+                        </tr>
+                         <tr>
+                          <td><p class="text-left">Volume</p></td>
+                          <td><p class="text-right">0</p></td>
+                          <td><p class="text-left">Avg Vol.(3m)</p></td>
+                          <td><p class="text-right">N/A</p></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="col-lg-8 col-md-12">
+                  <section class="panel">
+                      <header class="panel-heading">
+                       Historical Stock price
+                      </header>
+                      <div class="panel-body text-center">
+                        <div class="btn-group" role="group">
+                          <button type="button" class="btn btn-default active">1D</button>
+                          <button type="button" class="btn btn-default">5D</button>
+                        </div>
+                        <canvas id="line" height="300" width="500"></canvas>
+                      </div>
+                  </section>
+                </div>
+              </div>
               <!-- page end-->
           </section>
       </section>
@@ -278,9 +335,27 @@
     <!-- nice scroll -->
     <script src="static/assets/js/jquery.scrollTo.min.js"></script>
     <script src="static/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- chart -->
+    <script src="static/assets/js/chart.js"></script>
     <!--custome script for all page-->
     <script src="static/bootstrap/js/scripts.js"></script>
+    <script>
+      var lineChartData = {
+        labels : ["1:00pm","2:00pm","3:00pm","4:00pm","5:00pm","6:00pm","7:00pm"],
+        datasets : [
+          {
+            fillColor : "rgba(220,220,220,0.5)",
+            strokeColor : "rgba(220,220,220,1)",
+            pointColor : "rgba(220,220,220,1)",
+            pointStrokeColor : "#fff",
+            data : [17.75,17.07,18.02,19.10,19.45,18.99,17.40]
+          }
+        ]
+        
+      }
 
+    var myLine = new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+    </script>
 
   </body>
 </html>
