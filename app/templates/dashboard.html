@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>PyTrade</title>
+    <title>PyTrade Dashboard</title>
 
     <!-- Bootstrap CSS -->    
     <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
     <!--external css-->
     <!-- font icon -->
     <link href="static/assets/css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="static/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--custom styles-->
     <link href="static/bootstrap/css/style.css" rel="stylesheet">
     <link href="static/assets/css/style-responsive.css" rel="stylesheet" />
@@ -123,21 +123,21 @@
                             <li>
                                 <a href="#">
                                     <span class="label label-primary"><i class="icon_profile"></i></span> 
-                                    Friend Request
+                                    Xinmin follows you.
                                     <span class="small italic pull-right">5 mins</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     <span class="label label-warning"><i class="icon_pin"></i></span>  
-                                    Mengyi location.
+                                    New stock infomration!
                                     <span class="small italic pull-right">50 mins</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     <span class="label label-success"><i class="icon_like"></i></span> 
-                                    Mingjun appreciated your work.
+                                    Mingjun joined group "PyTrade"
                                     <span class="small italic pull-right"> Today</span>
                                 </a>
                             </li>                            
@@ -165,10 +165,7 @@
                                 <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
                             </li>
                             <li>
-                                <a href="logout"><i class="icon_key_alt"></i> Log Out</a>
-                            </li>
-                            <li>
-                                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+                                <a href="logout"><i class="icon_key_alt"></i> Log out</a>
                             </li>
                         </ul>
                     </li>
@@ -185,37 +182,25 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">                
                   <li class="active">
-                      <a class="" href="index.html">
+                      <a class="" href="dashboard">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
+                      <a href="industrynews" class="">
+                          <i class="fa fa-newspaper-o"></i>
                           <span>Industry News</span>
                       </a>
 
                   </li>       
                   <li class="sub-menu">
-                      <a href="javascript:;" class="">
+                      <a href="stocklist" class="">
                           <i class="icon_desktop"></i>
                           <span>My stock list</span>
                       </a>
                   </li>
-                  <li>
-                      <a class="" href="#">
-                          <i class="icon_genius"></i>
-                          <span>Personal Finance</span>
-                      </a>
-                  </li>
-                  <li>                     
-                      <a class="" href="chart-chartjs.html">
-                          <i class="icon_piechart"></i>
-                          <span>Account Balance</span>
-                      </a>
-                                         
-                  </li>
+
                              
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
@@ -258,113 +243,59 @@
       <section id="main-content">
           <section class="wrapper">            
               <!--overview start-->
-        <div class="row">
-        <div class="col-lg-12">
-          <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
-          <ol class="breadcrumb">
-            <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-            <li><i class="fa fa-laptop"></i>Dashboard</li>             
-          </ol>
-        </div>
-      </div>
-        <div class="row">
-          <!-- Bar -->
-          <div class="col-lg-9 col-md-12">
-            <section class="panel">
-                <header class="panel-heading">
-                 Your Accound Balance Summary
-                </header>
-                <div class="panel-body text-center">
-                  <canvas id="bar" height="300" width="500"></canvas>
-                </div>
-            </section>
-          </div>
-          <div class="col-md-3">
-              <!-- List starts -->
-             <ul class="today-datas">
-                <!-- List #1 -->
-                <li>
-                  <!-- Graph -->
-                  <div><span id="todayspark1" class="spark"></span></div>
-                  <!-- Text -->
-                  <div class="datas-text">11,500 visitors/day</div>
-                </li>
-                <li>
-                  <div><span id="todayspark2" class="spark"></span></div>
-                  <div class="datas-text">15,000 Pageviews</div>
-                </li>
-                <li>
-                  <div><span id="todayspark3" class="spark"></span></div>
-                  <div class="datas-text">30.55% Bounce Rate</div>
-                </li>
-                <li>
-                  <div><span id="todayspark4" class="spark"></span></div>
-                  <div class="datas-text">$16,0000000 Revenue/Day</div>
-                </li>
-                <li>
-                  <div><span id="todayspark5" class="spark"></span></div>
-                  <div class="datas-text">12,000000 visitors every Month</div>
-                </li>
-              </ul>
+            <div class="row">
+              <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+                <ol class="breadcrumb">
+                  <li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
+                  <li><i class="fa fa-laptop"></i>Dashboard</li>           
+                </ol>
               </div>
-        </div>
-
-
-      <div class="row">
-
-        <div class="col-md-3">
-          
-          <div class="social-box facebook">
-            <i class="fa fa-facebook"></i>
-            <ul>
-              <li>
-                <strong>256k</strong>
-                <span>friends</span>
-              </li>
-              <li>
-                <strong>359</strong>
-                <span>feeds</span>
-              </li>
-            </ul>
-          </div><!--/social-box-->
-        </div>
-        <div class="col-md-3">
-          
-          <div class="social-box google-plus">
-            <i class="fa fa-google-plus"></i>
-            <ul>
-              <li>
-                <strong>962</strong>
-                <span>followers</span>
-              </li>
-              <li>
-                <strong>256</strong>
-                <span>circles</span>
-              </li>
-            </ul>
-          </div><!--/social-box-->      
-          
-        </div><!--/col-->
-        <div class="col-md-3">
-          
-          <div class="social-box twitter">
-            <i class="fa fa-twitter"></i>
-            <ul>
-              <li>
-                <strong>1562k</strong>
-                <span>followers</span>
-              </li>
-              <li>
-                <strong>2562</strong>
-                <span>tweets</span>
-              </li>
-            </ul>
-          </div><!--/social-box-->
-        </div><!--/col-->
-        
-              </div><!--/row-->
-  
-                <!-- statics end -->
+            </div>
+            <div class="row">
+              <!-- Bar -->
+              <div class="col-lg-9 col-md-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                     Your Accound Balance Summary
+                    </header>
+                    <div class="panel-body text-center">
+                      <p class="text-right">grey: Gross Income</p>
+                      <p class="text-right">blue: Coperate Loss</p>
+                      <canvas id="bar" height="300" width="500"></canvas>
+                    </div>
+                </section>
+              </div>
+              <div class="col-md-3">
+                  <!-- List starts -->
+                <p class = "text-center"> Trending Tickers</p>
+                <ul class="today-datas">
+                    <!-- List #1 -->
+                    <li>
+                      <!-- Graph -->
+                      <div><span id="todayspark1" class="spark"></span></div>
+                      <!-- Text -->
+                      <div class="datas-text">FRAN: Gross Income</div>
+                    </li>
+                    <li>
+                      <div><span id="todayspark2" class="spark"></span></div>
+                      <div class="datas-text">GE: Gross Income</div>
+                    </li>
+                    <li>
+                      <div><span id="todayspark3" class="spark"></span></div>
+                      <div class="datas-text">STI: 30.55% Bounce Rate</div>
+                    </li>
+                    <li>
+                      <div><span id="todayspark4" class="spark"></span></div>
+                      <div class="datas-text">GE: $16,0000000 Revenue/Day</div>
+                    </li>
+                    <li>
+                      <div><span id="todayspark5" class="spark"></span></div>
+                      <div class="datas-text">FB: stock price over time</div>
+                    </li>
+                  </ul>
+                  </div>
+            </div>
 
           </section>
       </section>

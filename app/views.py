@@ -10,6 +10,16 @@ def index():
     else:
 	return render_template('dashboard.html')
 
+@app.route('/admin', methods = ['GET','POST'])
+def adminlogin():
+    return render_template('adminlogin.html')
+
+def admin():
+    if not session.get('logged_in'):
+    	return render_template('index.html')
+    else:
+	return render_template('admindashboard.html')
+
 
 @app.route('/login', methods = ['GET','POST'])
 def login():
@@ -26,6 +36,18 @@ def userLogIn():
         error = 'Invalid Credentials'
 	return render_template('login.html', error = error)
     return index()
+
+@app.route('/auth2', methods = ['POST'])
+def adminLogIn():
+    error = None
+    print(request.form['password'])
+    if request.form['password'] == 'password' and request.form['username'] == 'admin2':
+        session['logged_in'] = True
+        session['username'] = request.form['username']
+    else:
+        error = 'Invalid Credentials'
+	return render_template('adminlogin.html', error = error)
+    return admin()
 
 @app.route("/logout")
 def logout():
@@ -69,8 +91,27 @@ def userSignup():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route("/admindashboard")
+def admindashboard():
+    return render_template('admindashboard.html')
+
 @app.route("/about")
 def about():
     return render_template('blank.html')
 
+@app.route("/stocklist")
+def stocklist():
+    return render_template('stocklist.html')
 
+@app.route("/industrynews")
+def industrynews():
+    return render_template('industrynews.html')
+
+@app.route("/stockinfo")
+def stockinfo():
+    return render_template('stockinfo.html')
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html")

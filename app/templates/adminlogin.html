@@ -25,6 +25,13 @@
         <link rel="stylesheet" href="static/assets/css/animate.css">
         <link rel="stylesheet" href="static/assets/css/magnific-popup.css">
         <link rel="stylesheet" href="static/assets/css/odometer-theme-default.css">
+        <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">
+    	<!-- bootstrap theme -->
+    	<link href="static/assets/css/bootstrap-theme.css" rel="stylesheet">
+    	<!--external css-->
+    	<!-- font icon -->
+    	<link href="static/assets/css/elegant-icons-style.css" rel="stylesheet" />
+    	<link href="static/assets/css/font-awesome.css" rel="stylesheet" />
         <script>
         window.odometerOptions = {
           selector: '.odometer',
@@ -56,18 +63,48 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-xs-10">
-                            <a href="#" class="thumbnail logo">
-                                <img src="static/images/PyTradeLogo.png" style = "width: 150px; height:auto;"alt="" class="img-responsive">
+                            <a href="#">
+                                <img src="static/images/PyTradeLogo.png" style = "width: 150px; height:auto;"alt="">
                             </a>
                         </div>
                         <div class="col-md-1 col-md-offset-8 col-xs-2 text-center">
                           <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
                         </div>
                     </div>
-                    <div class="jumbotron">
-                        <h1><strong>PyTrade</strong></h1>
-			<br><br>
-                        <p><a class="btn btn-primary btn-lg" role="button" href = "signup">Sign Up</a> <a class="btn btn-lg btn-danger" role = "button" href = "login">Log in</a></p>
+		    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                    <div class="jumbotron"><h1 style="color:white;"><strong>PyTrade</strong></h1>
+			{% block content %}
+  			{% if session['logged_in'] %}
+			<p>You're logged in already</p>
+			{% else %}
+			<form action = "/auth2" method = "POST" class="login-form">
+        		<div class="login-wrap">
+           		    <p class="login-img"><i class="icon_lock_alt"></i></p>
+            		    <div class="input-group">
+              		        <span class="input-group-addon"><i class="icon_profile"></i></span>
+              			<input type="username" name="username" class="form-control" placeholder="Username" autofocus>
+            		    </div>
+            		    <div class="input-group">
+                		<span class="input-group-addon"><i class="icon_key_alt"></i></span>
+               	 		<input type="password" name="password" class="form-control" placeholder="Password">
+            		    </div>
+            		    <input class="btn btn-primary btn-lg btn-block" type="submit" value = "Log in">
+        		{% if error %}
+                        <p class=error style="color:red;font-weight:900;"><strong>Error:</strong> {{ error }}</p>
+                        {% endif %}
+			</div>
+      			</form>
+			{% endif %}
+			
+			{% endblock %}
                     </div>
                 </div>
             </div>
@@ -77,18 +114,18 @@
                 <div class="row features">
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="100ms">
                         <span class="typcn typcn-pencil x3"></span>
-                        <h4>Interactive Financial Management Dashboard</h4>
-                        <p>PyTrade provides a dashboard for users to manage account balance, stock holding and financial news feed.</p>
+                        <h4>Feature One</h4>
+                        <p>xxx.</p>
                     </div>
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="300ms">
                         <span class="typcn typcn-camera-outline x3"></span>
-                        <h4>Stock Price Visualization</h4>
-                        <p>PyTrade implements stock prices and data visualization based on user's actions and choices of indexes.</p>
+                        <h4>Feature Two</h4>
+                        <p>xxx.</p>
                     </div>
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="500ms">
                         <span class="typcn typcn-bookmark x3"></span>
-                        <h4>Prediction</h4>
-                        <p> The high-performance Machine Learning model provides predictions of stock prices and market trends.</p>
+                        <h4>Feature Three</h4>
+                        <p>xxx.</p>
                     </div>
                 </div>
             </div>
@@ -102,19 +139,19 @@
                             <div class="row">
                                 <div class="col-md-offset-1 col-md-10">
                                     <h3>What we offer</h3>
-                                    <h5>Free account</h5>
-                                    <p>Financial strategies and information visualization</p>
+                                    <h5>Stuff</h5>
+                                    <p>Cool.</p>
                                 </div>
                             </div>
                             <div class="row text-center">
                                 <!-- set the numbers in assets/js/scripts.js  -->
                                 <div class="col-md-4 boxes col-xs-6 col-xs-offset-3 col-lg-4 col-lg-offset-1 col-md-offset-1 col-sm-6 wow fadeInUp">
                                     <h5>Number of active users</h5>
-                                    <h3 class="odometer 01">100000</h3>
+                                    <h3 class="odometer 01">00000</h3>
                                 </div>
                                 <div class="col-md-4 boxes col-xs-6 col-xs-offset-3 col-lg-4 col-lg-offset-2 col-md-offset-2 col-sm-6 wow fadeInUp" data-wow-delay="300ms">
                                     <h5>Revenue Created</h5>
-                                    <h3>$10000000000</h3>
+                                    <h3>$1000000</h3>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +164,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <h2>Behind PyTrade Model.</h2>
-                        <p>We use machine learning with Python Scikit Learn, pandas, numpy packages.</p>
+                        <p>We use machine learning.</p>
                         <p>Wanna see a demo video?</p>
                         <a class="btn btn-danger btn-lg">Take a Look <i class="fa fa-arrow-circle-o-right"></i> </a>
                     </div>
@@ -148,14 +185,8 @@
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-1">
                                     <p class="lead"><i>Recommendations from peers</i></p>
-                                    <p><i>Cool Page!</i></p>
-                                    <h6 class="lead"> – Lingling Zhang</h6>
-                                    <p><i>The main page is clear an straight forward.</i></p>
-                                    <h6 class="lead"> – Yufeng Wang</h6>
-                                    <p><i>The stock prediction looks fantastic.</i></p>
-                                    <h6 class="lead"> – Xiaosi Gao</h6>
-                                    <p><i>It will be my efficient personal finance agent.</i></p>
-                                    <h6 class="lead"> – Tiancheng Gong</h6>
+                                    <p><i>PyTrade is the best.</i></p>
+                                    <h6 class="lead"> – Chairman Mao</h6>
                                     <p><small>.</small></p>
                                 </div>
                             </div>
