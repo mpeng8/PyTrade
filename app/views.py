@@ -73,4 +73,14 @@ def dashboard():
 def about():
     return render_template('blank.html')
 
+@app.route("/stocklist")
+def stocklist():
+    return render_template('stocklist.html')
 
+@app.route("/industrynews")
+def industrynews():
+    return render_template('industrynews.html')
+
+@app.route("/stockinfo")
+def stockinfo():
+    return render_template('stockinfo.html')

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>PyTrade |　Blank page template</title>
+    <title>PyTrade Stock List</title>
 
     <!-- Bootstrap CSS -->
     <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -174,14 +174,14 @@
                 </ul>
                 <!-- notificatoin dropdown end-->
             </div>
-      </header>
+      </header>      
       <!--header end-->
 
       <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
+          <div id="sidebar" class="nav-collapse ">
               <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
+              <ul class="sidebar-menu">             
                   <li class="sub-menu">
                       <a class="" href="dashboard">
                           <i class="icon_house_alt"></i>
@@ -195,7 +195,7 @@
                       </a>
 
                   </li>       
-                  <li class="sub-menu">
+                  <li class="active">
                       <a href="stocklist" class="">
                           <i class="icon_desktop"></i>
                           <span>My stock list</span>
@@ -207,7 +207,6 @@
                           <span>Account Balance</span>
                       </a>
                   </li>
-                             
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_profile"></i>
@@ -219,7 +218,7 @@
                           <li><a class="" href="#">My followees</a></li>
                       </ul>
                   </li>
-
+                  
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_profile"></i>
@@ -234,7 +233,7 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                        <ul class="sub">                          
-                          <li><a class="active" href="about">Blank Page</a></li>
+                          <li><a class="" href="about">Blank Page</a></li>
                           <li><a class="" href="404.html">404 Error</a></li>
                       </ul>
                   </li>
@@ -250,16 +249,51 @@
           <section class="wrapper">
             <div class="row">
               <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa fa-bars"></i> Pages</h3>
+                <h3 class="page-header"><i class="icon_desktop"></i>My Stock List</h3>
                 <ol class="breadcrumb">
                   <li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
-                  <li><i class="fa fa-bars"></i>Pages</li>
-                  <li><i class="fa fa-square-o"></i>Pages</li>
+                  <li><i class="icon_desktop"></i>My Stock List</li>
                 </ol>
               </div>
             </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-9">
+                  <h4>Total: 3 stocks following</h4>
+                </div>
+              </div>
               <!-- page start-->
-              Page content goes here
+              <div class="row">
+                  <div class="col-lg-9 col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-bordered">
+                        <thead class="thead-inverse">
+                          <tr>
+                            <th>Stock Name:Company name</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a role="button" class="btn btn-link" href="stockinfo">VXGOG: CBOE EQUITY VIXON GOOGLE</a></td>
+                            <td><button type="button" class="btn btn-default">Delete</button></td>
+                          </tr>
+                          <tr>
+                            <td><a role="button" class="btn btn-link">FB: Facebook, Inc.</a></td>
+                            <td><button type="button" class="btn btn-default">Delete</button></td>
+                          </tr>
+                          <tr>
+                            <td><a role="button" class="btn btn-link">GE: General Electric Company</a></td>
+                            <td><button type="button" class="btn btn-default">Delete</button></td>
+                          </tr>
+                          <tr>
+                            <td><input type="text" class="form-control" id="stockSearch" placeholder="Please type in stock name or company name to search for the stock"></td>
+                            <td><button type="button" class="btn btn-default">Search</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div><!--table-->
+                  </div><!--col-->
+              </div><!--row-->
               <!-- page end-->
           </section>
       </section>
