@@ -1,6 +1,7 @@
 from flask import render_template, url_for, redirect,session,abort, request, flash
 from app import app
 from .forms import LoginForm
+from db import *
 import re
 @app.route('/')
 @app.route('/index')
@@ -21,6 +22,7 @@ def admin():
 	return render_template('admindashboard.html')
 
 
+
 @app.route('/login', methods = ['GET','POST'])
 def login():
     return render_template('login.html')
@@ -29,7 +31,7 @@ def login():
 def userLogIn():
     error = None
     print(request.form['password'])
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+    if isExisted(request.form['username'],request.form['password']):
         session['logged_in'] = True
         session['username'] = request.form['username']
     else:
@@ -84,6 +86,7 @@ def userSignup():
         # do we need to make a pop up window or message?
         # or we can directly login to the account?
         session['logged_in'] = True
+        insert(request.form['username'], request.form['email'], request.form['password'])
         return index()
     return render_template('signup.html', error= error)
 
