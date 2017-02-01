@@ -2,6 +2,9 @@ from flask import render_template, url_for, redirect,session,abort, request, fla
 from app import app
 from .forms import LoginForm
 import re
+from app import db
+from app.models import User
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -28,12 +31,17 @@ def login():
 @app.route('/auth', methods = ['POST'])
 def userLogIn():
     error = None
-    print(request.form['password'])
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+    un = request.form['username']
+    q_user = User.query.filter(User.username == un).first()
+
+    if q_user == None:
+        error = 'User not existed.'
+    elif request.form['password'] == q_user.password:
         session['logged_in'] = True
         session['username'] = request.form['username']
     else:
         error = 'Invalid Credentials'
+
 	return render_template('login.html', error = error)
     return index()
 
@@ -77,13 +85,23 @@ def userSignup():
         error = 'Email is blank'
     elif not request.form['password']:
         error = 'Password is blank'
+    elif not (len(request.form['password']) >= 6 and len(request.form['password']) <= 30):
+        error = len(request.form['password']),'Password length should between 6 and 30 symbols.'
     elif not request.form['re-password']:
         error = 'Please re-enter the password'
     else:
         # sign up successfully
         # do we need to make a pop up window or message?
         # or we can directly login to the account?
-        session['logged_in'] = True
+        u = User(request.form['username'], request.form['password'], request.form['email'])
+        #session['logged_in'] = True
+        print "Account create successfully.!"
+        try:
+            db.session.add(u)
+            db.session.commit()        
+            db.session.close()
+        except:
+            db.session.rollback()
         return index()
     return render_template('signup.html', error= error)
 
