@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect,session,abort, request, flash
+from flask import render_template, url_for, redirect, session, abort, request, flash
 from app import app
 from .forms import LoginForm
 import re
@@ -6,12 +6,13 @@ from app import db
 from app.models import User
 
 @app.route('/')
+
 @app.route('/index')
 def index():
     if not session.get('logged_in'):
     	return render_template('index.html')
     else:
-	return render_template('dashboard.html')
+	return dashboard()
 
 @app.route('/admin', methods = ['GET','POST'])
 def adminlogin():
@@ -41,8 +42,8 @@ def userLogIn():
         session['username'] = request.form['username']
     else:
         error = 'Invalid Credentials'
-
-	return render_template('login.html', error = error)
+    if error != None:
+	   return render_template('login.html', error = error)
     return index()
 
 @app.route('/auth2', methods = ['POST'])
@@ -60,6 +61,7 @@ def adminLogIn():
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
+    session['username'] = None
     return index()
 
 @app.route('/signup', methods = ['GET','POST'])

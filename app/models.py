@@ -26,3 +26,15 @@ class User(db.Model):
 
     def __repr__(self):
         return "<User(name='%s', id='%s')>" % (self.username, self.id)
+
+    @property
+    def get_name(self):
+        return username
+    
+    @property
+    def get_mail(self):
+        return email
+    
+    @property
+    def get_id(self):
+        return id

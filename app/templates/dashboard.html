@@ -153,7 +153,9 @@
                             <span class="profile-ava">
                                 <img alt="ava" src="static/images/yzhou-profile.jpg" >
                             </span>
-                            <span class="username">Yihan Zhou</span>
+                            {% block content %}
+                              <span class="username">{{ session['username'] }}</span>
+                            {% endblock %}
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
