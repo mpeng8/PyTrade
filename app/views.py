@@ -1,6 +1,5 @@
 from flask import render_template, url_for, redirect, session, abort, request, flash
 from app import app
-from .forms import LoginForm
 import re
 from app import db
 from app.models import User
@@ -10,9 +9,9 @@ from app.models import User
 @app.route('/index')
 def index():
     if not session.get('logged_in'):
-    	return render_template('index.html')
+        return render_template('index.html')
     else:
-	return dashboard()
+        return dashboard()
 
 @app.route('/admin', methods = ['GET','POST'])
 def adminlogin():
@@ -20,9 +19,9 @@ def adminlogin():
 
 def admin():
     if not session.get('logged_in'):
-    	return render_template('index.html')
+        return render_template('index.html')
     else:
-	return render_template('admindashboard.html')
+        return render_template('admindashboard.html')
 
 
 @app.route('/login', methods = ['GET','POST'])
@@ -43,7 +42,7 @@ def userLogIn():
     else:
         error = 'Invalid Credentials'
     if error != None:
-	   return render_template('login.html', error = error)
+       return render_template('login.html', error = error)
     return index()
 
 @app.route('/auth2', methods = ['POST'])
@@ -55,7 +54,7 @@ def adminLogIn():
         session['username'] = request.form['username']
     else:
         error = 'Invalid Credentials'
-	return render_template('adminlogin.html', error = error)
+    return render_template('adminlogin.html', error = error)
     return admin()
 
 @app.route("/logout")
@@ -97,12 +96,14 @@ def userSignup():
         # or we can directly login to the account?
         u = User(request.form['username'], request.form['password'], request.form['email'])
         #session['logged_in'] = True
+
         print "Account create successfully.!"
         try:
             db.session.add(u)
-            db.session.commit()        
+            db.session.commit()       
             db.session.close()
         except:
+            error = "Account creation failed."
             db.session.rollback()
         return index()
     return render_template('signup.html', error= error)
