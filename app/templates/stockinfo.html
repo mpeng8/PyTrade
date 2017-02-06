@@ -17,7 +17,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom styles -->
     <link href="static/bootstrap/css/style.css" rel="stylesheet">
+    <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
     <link href="static/assets/css/style-responsive.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+    <style>
+    .chart div {
+      font: 10px sans-serif;
+      background-color: steelblue;
+      text-align: right;
+      padding: 3px;
+      margin: 1px;
+      color: white;
+    }
+    </style>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -26,12 +39,11 @@
       <script src="js/lte-ie7.js"></script>
     <![endif]-->
   </head>
-
   <body>
   <!-- container section start -->
   <section id="container" class="">
       <!--header start-->
-      
+
       <header class="header dark-bg">
             <div class="toggle-nav">
                 <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
@@ -41,7 +53,7 @@
             <a href="dashboard" class="logo">PyTrade</a>
             <!--logo end-->
 
-            <div class="top-nav notification-row">                
+            <div class="top-nav notification-row">
                 <!-- notificatoin dropdown start-->
                 <ul class="nav pull-right top-menu">
                     <!-- inbox notificatoin start-->
@@ -124,21 +136,21 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="label label-primary"><i class="icon_profile"></i></span> 
+                                    <span class="label label-primary"><i class="icon_profile"></i></span>
                                     Xinmin follows you.
                                     <span class="small italic pull-right">5 mins</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="label label-warning"><i class="icon_pin"></i></span>  
+                                    <span class="label label-warning"><i class="icon_pin"></i></span>
                                     New stock infomration!
                                     <span class="small italic pull-right">50 mins</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="label label-success"><i class="icon_like"></i></span> 
+                                    <span class="label label-success"><i class="icon_like"></i></span>
                                     Mingjun joined group "PyTrade".
                                     <span class="small italic pull-right"> Today</span>
                                 </a>
@@ -175,14 +187,14 @@
                 </ul>
                 <!-- notificatoin dropdown end-->
             </div>
-      </header>      
+      </header>
       <!--header end-->
 
       <!--sidebar start-->
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
+              <ul class="sidebar-menu">
                   <li class="sub-menu">
                       <a class="" href="dashboard">
                           <i class="icon_house_alt"></i>
@@ -195,22 +207,22 @@
                           <span>Industry News</span>
                       </a>
 
-                  </li>       
+                  </li>
                   <li class="sub-menu">
                       <a href="stocklist" class="">
                           <i class="icon_desktop"></i>
                           <span>My stock list</span>
                       </a>
                   </li>
-                  <li>                     
+                  <li>
                       <a class="" href="#">
                           <i class="icon_piechart"></i>
                           <span>Account Balance</span>
-                          
+
                       </a>
-                                         
+
                   </li>
-                             
+
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_profile"></i>
@@ -222,7 +234,7 @@
                           <li><a class="" href="#">My followees</a></li>
                       </ul>
                   </li>
-                  
+
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_profile"></i>
@@ -236,7 +248,7 @@
                           <span>About</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
-                       <ul class="sub">                          
+                       <ul class="sub">
                           <li><a class="active" href="about">Blank Page</a></li>
                           <li><a class="" href="404.html">404 Error</a></li>
                       </ul>
@@ -316,9 +328,12 @@
                     </div>
 
                 </div>
-                <div class="col-lg-8 col-md-12">
-                        <!--need revision-->
-                        <!-- TradingView Widget BEGIN -->
+
+                <div class="col-lg-8 col-md-12 chart">
+                </div>
+                <script src= "static/js/stockDisplay.js"></script>
+                <!--
+                <div class="col-lg-8 col-md-12"> ->
                         <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
                         <script type="text/javascript">
                         new TradingView.widget({
@@ -336,9 +351,9 @@
                           "hideideas": true
                         });
                         </script>
-                        <!-- TradingView Widget END -->
                 </div>
               </div>
+              -->
 
               <!-- page end-->
           </section>
