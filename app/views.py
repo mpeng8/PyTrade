@@ -100,7 +100,7 @@ def userSignup():
         print "Account create successfully.!"
         try:
             db.session.add(u)
-            db.session.commit()       
+            db.session.commit()
             db.session.close()
         except:
             error = "Account creation failed."
