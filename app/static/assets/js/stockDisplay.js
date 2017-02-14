@@ -47,38 +47,30 @@ json.complete(function() {
     var	yAxis = d3.svg.axis().scale(y)
 	      .orient("left").ticks(10);
 
-
     var svg = d3.select(".chart").append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
+    var navWidth = width,
+        navHeight = 100 - margin.top - margin.bottom;
 
+    var navChart = d3.select('.chart').classed('chart', true).append('svg')
+        .classed('navigator', true)
+        .attr('width', navWidth + margin.left + margin.right)
+        .attr('height', navHeight + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-  var navWidth = width,
-      navHeight = 100 - margin.top - margin.bottom;
+    var navXScale = d3.time.scale().domain([minDate, maxDate]).range([0, navWidth]),
+        navYScale = d3.scale.linear().domain([yMin, yMax]).range([navHeight, 0]);
 
-  var navChart = d3.select('.chart').classed('chart', true).append('svg')
-      .classed('navigator', true)
-      .attr('width', navWidth + margin.left + margin.right)
-      .attr('height', navHeight + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-      var navXScale = d3.time.scale()
-              .domain([minDate, maxDate])
-              .range([0, navWidth]),
-          navYScale = d3.scale.linear()
-              .domain([yMin, yMax])
-              .range([navHeight, 0]);
+    var navXAxis = d3.svg.axis().scale(navXScale).orient('bottom');
 
-              var navXAxis = d3.svg.axis()
-    .scale(navXScale)
-    .orient('bottom');
-
-navChart.append('g')
-    .attr('class', 'x axis')
-    .attr('transform', 'translate(0,' + navHeight + ')')
-    .call(navXAxis);
+    navChart.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + navHeight + ')')
+        .call(navXAxis);
 
     var navData = d3.svg.area()
     .x(function (d) { return navXScale(d[0]); })
