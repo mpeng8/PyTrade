@@ -12,11 +12,7 @@
       				</div>
       			</div>
               <!-- page start-->
-              <div class="row">
-                <div class="col-lg-6 col-md-9">
-                  <h4>Total: 3 stocks following</h4>
-                </div>
-              </div>
+
               <div class="row">
                 <div class="col-lg-6 col-md-9">
                   <h3> {{ stockName }}</h3>
@@ -67,9 +63,15 @@
 
                 </div>
                 <style>
+                .axis path,
+                .axis line {
+                  fill:none;
+                  stroke: #000;
+                }
                 .line{
                   fill: none;
                   stroke:steelblue;
+                  stroke-width:1.5px;
                 }
                 </style>
                 <div class="col-lg-8 col-md-12 chart">
