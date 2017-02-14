@@ -135,7 +135,10 @@ def stockinfo():
     post = "empty";
     if(request.method == "POST"):
         post = request.form["stockName"];
-    return render_template('stockinfo.html', stockName=post)
+        stockID = post.split(':', 1 )[0];
+        post = post.split(':',1)[1];
+
+    return render_template('stockinfo.html', stockName=post, stockID = stockID)
 
 
 @app.errorhandler(404)

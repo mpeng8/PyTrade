@@ -1,5 +1,8 @@
 
-var json = $.getJSON("https://www.quandl.com/api/v3/datasets/YAHOO/MSFT.json?start_date=2015-01-03&end_date=2015-03-03&order=asc");
+var stockID = document.getElementById("stockID_info").innerText;
+console.log(stockID);
+
+var json = $.getJSON("https://www.quandl.com/api/v3/datasets/YAHOO/" + stockID+".json?start_date=2015-01-03&end_date=2015-02-03&order=asc");
 
 json.complete(function() {
 
