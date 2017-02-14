@@ -49,7 +49,7 @@
                     </table>
                   </div>
                     <div>
-                      <p>Please choose a time frame</p>
+                      <p>Navigation Bar</p>
                     </div>
                     <div class="col-lg-6 col-md-9">
                     <form>
@@ -68,14 +68,30 @@
                   fill:none;
                   stroke: #000;
                 }
+                .chart .bar.up-day path {
+                stroke: green;
+                }
+
+                .chart .bar.down-day path {
+                  stroke: red;
+                }
                 .line{
                   fill: none;
                   stroke:steelblue;
                   stroke-width:1.5px;
                 }
+                .navigator .data {
+                  fill: lightgrey;
+                  stroke-width: 0px;
+                }
+
+                .navigator .line {
+                  fill: none;
+                  stroke: darkgrey;
+                  stroke-width: 1px;
+                }
                 </style>
                 <div class="col-lg-8 col-md-12 chart">
-
                 </div>
               </div>
 {% endblock %}
@@ -91,6 +107,7 @@
     <!-- chart -->
     <script src="static/assets/js/chart.js"></script>
     <script src="static/assets/js/stockDisplay.js"></script>
+    <script src="static/assets/js/navigationBar.js"></script>
     <!--custome script for all page-->
     <script src="static/bootstrap/js/scripts.js"></script>
 {% endblock %}
