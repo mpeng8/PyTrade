@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td><a role="button" class="btn btn-link" href="stockinfo">NVDA: NVIDIA Corporation</a></td>
+                            <td><form action = "/stockinfo" method = "POST"> <input name = "stockName"role="button" class="btn btn-link" type="submit" value = "NVDA: NVIDIA Corporation"></input></form></td>
                             <td><button type="button" class="btn btn-default">Delete</button></td>
                           </tr>
                           <tr>
@@ -52,6 +52,9 @@
 {% block script %}
     <!-- javascripts -->
     <script src="static/assets/js/jquery.js"></script>
+    <script src="static/assets/js/stockList.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
     <!-- bootstrap -->
     <script src="static/assets/js/bootstrap.min.js"></script>
     <!-- nice scroll -->
