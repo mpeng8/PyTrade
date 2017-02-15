@@ -25,3 +25,9 @@ stroke: green;
   stroke: darkgrey;
   stroke-width: 1px;
 }
+
+.navigator .viewport {
+    stroke: grey;
+    fill: black;
+    fill-opacity: 0.2;
+}

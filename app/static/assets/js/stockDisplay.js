@@ -1,8 +1,8 @@
 
 var stockID = document.getElementById("stockID_info").innerText;
-console.log(stockID);
+//console.log(stockID);
 
-var json = $.getJSON("https://www.quandl.com/api/v3/datasets/YAHOO/" + stockID+".json?start_date=2015-01-03&end_date=2015-02-03&order=asc");
+var json = $.getJSON("https://www.quandl.com/api/v3/datasets/YAHOO/" + stockID+".json?start_date=2014-01-03&end_date=2015-02-03&order=asc");
 
 json.complete(function() {
 
@@ -23,8 +23,8 @@ json.complete(function() {
     var	y = d3.scale.linear().range([height, 0]);
 
     var line = d3.svg.line()
-    .x(function(d) { return x(d[0]); })
-    .y(function(d) { return y(d[4]); });
+        .x(function(d) { return x(d[0]); })
+        .y(function(d) { return y(d[4]); });
 
     //parseDate
     stockData.forEach(function(d) {
@@ -73,21 +73,37 @@ json.complete(function() {
         .call(navXAxis);
 
     var navData = d3.svg.area()
-    .x(function (d) { return navXScale(d[0]); })
-    .y0(navHeight)
-    .y1(function (d) { return navYScale(d[4]); });
+        .x(function (d) { return navXScale(d[0]); })
+        .y0(navHeight)
+        .y1(function (d) { return navYScale(d[4]); });
 
-var navLine = d3.svg.line()
-    .x(function (d) { return navXScale(d[0]); })
-    .y(function (d) { return navYScale(d[4]); });
+    var navLine = d3.svg.line()
+        .x(function (d) { return navXScale(d[0]); })
+        .y(function (d) { return navYScale(d[4]); });
 
-navChart.append('path')
-    .attr('class', 'data')
-    .attr('d', navData(stockData));
+    navChart.append('path')
+        .attr('class', 'data')
+        .attr('d', navData(stockData));
 
-navChart.append('path')
-    .attr('class', 'line')
-    .attr('d', navLine(stockData));
+    navChart.append('path')
+        .attr('class', 'line')
+        .attr('d', navLine(stockData));
+
+    function redrawChart() {
+        //dataSeries.call(series);
+        svg.select('.x.axis').call(xAxis);
+    }
+    var viewport = d3.svg.brush()
+        .x(navXScale)
+        .on("brush", function () {
+            x.domain(viewport.empty() ? navXScale.domain() : viewport.extent());
+            redrawChart();
+        });
+    navChart.append("g")
+            .attr("class", "viewport")
+            .call(viewport)
+            .selectAll("rect")
+            .attr("height", navHeight);
 
   svg.append("rect")
       .attr("width", "100%")
@@ -114,7 +130,7 @@ navChart.append('path')
     .style("text-anchor", "end")
     .text("Price ($)");
 
-svg.append("path")
+    svg.append("path")
      .datum(stockData)
         .attr("class", "line")
      .attr("transform", "translate(" + margin.left + ','+ margin.top + ')')
