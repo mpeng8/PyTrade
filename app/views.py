@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, session, abort, request, f
 from app import app
 import re
 from app import db
-from app.models import User
+from app.models import User, Stock
 
 @app.route('/')
 
@@ -82,6 +82,8 @@ def userSignup():
         #error = 'This email has already connect to an account'
     elif not request.form['username']:
         error = 'Username is blank'
+    elif not re.match("^[@]",request.form['email']):
+        error = 'Email is not valid'
     elif not request.form['email']:
         error = 'Email is blank'
     elif not request.form['password']:
@@ -103,9 +105,12 @@ def userSignup():
             db.session.commit()
             db.session.close()
         except:
-            error = "Account creation failed."
+            error = 'Account creation failed.'
             db.session.rollback()
+            return render_template('signup.html', error= error)
+
         return index()
+
     return render_template('signup.html', error= error)
 
 @app.route("/dashboard")
