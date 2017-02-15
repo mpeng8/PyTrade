@@ -12,14 +12,10 @@
       				</div>
       			</div>
               <!-- page start-->
+
               <div class="row">
                 <div class="col-lg-6 col-md-9">
-                  <h4>Total: 3 stocks following</h4>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6 col-md-9">
-                  <h3>NVDA: NVIDIA Corporation</h3>
+                  <h3 id = "stockID_info"> {{ stockID }}</h3>{{ stockName }}
                 </div>
                 <div class="col-lg-3">
                   <button type="button" class="btn btn-default">Predict</button>
@@ -53,7 +49,7 @@
                     </table>
                   </div>
                     <div>
-                      <p>Please choose a time frame</p>
+                      <p>Navigation Bar</p>
                     </div>
                     <div class="col-lg-6 col-md-9">
                     <form>
@@ -64,42 +60,25 @@
                       </div>
                     </form>
                     </div>
-
                 </div>
-                <div class="col-lg-8 col-md-12">
-                        <!--need revision-->
-                        <!-- TradingView Widget BEGIN -->
-                        <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
-                        <script type="text/javascript">
-                        new TradingView.widget({
-                          "width": 780,
-                          "height": 410,
-                          "symbol": "NASDAQ:NVDA",
-                          "interval": "D",
-                          "timezone": "Etc/UTC",
-                          "theme": "White",
-                          "style": "1",
-                          "locale": "en",
-                          "toolbar_bg": "#f1f3f6",
-                          "enable_publishing": false,
-                          "allow_symbol_change": true,
-                          "hideideas": true
-                        });
-                        </script>
-                        <!-- TradingView Widget END -->
+                <div class="col-lg-8 col-md-12 chart">
                 </div>
               </div>
 {% endblock %}
 {% block script %}
     <!-- javascripts -->
     <script src="static/assets/js/jquery.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <!-- bootstrap -->
     <script src="static/assets/js/bootstrap.min.js"></script>
+
     <!-- nice scroll -->
     <script src="static/assets/js/jquery.scrollTo.min.js"></script>
     <script src="static/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <!-- chart -->
     <script src="static/assets/js/chart.js"></script>
+    <script src="static/assets/js/stockDisplay.js"></script>
+    <script src="static/assets/js/navigationBar.js"></script>
     <!--custome script for all page-->
     <script src="static/bootstrap/js/scripts.js"></script>
 {% endblock %}

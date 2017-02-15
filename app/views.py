@@ -3,6 +3,9 @@ from app import app
 import re
 from app import db
 from app.models import User, Stock
+import pandas as pd
+import json
+
 
 @app.route('/')
 
@@ -82,7 +85,7 @@ def userSignup():
         #error = 'This email has already connect to an account'
     elif not request.form['username']:
         error = 'Username is blank'
-    elif not re.match("^[@]",request.form['email']):
+    elif not re.match("[^@]+@[^@]+\.[^@]+",request.form['email']):
         error = 'Email is not valid'
     elif not request.form['email']:
         error = 'Email is blank'
@@ -125,7 +128,7 @@ def admindashboard():
 def about():
     return render_template('blank.html')
 
-@app.route("/stocklist")
+@app.route("/stocklist", methods = ['GET', 'POST'])
 def stocklist():
     return render_template('stocklist.html')
 
@@ -133,9 +136,15 @@ def stocklist():
 def industrynews():
     return render_template('industrynews.html')
 
-@app.route("/stockinfo")
+@app.route("/stockinfo", methods = ['GET', 'POST'])
 def stockinfo():
-    return render_template('stockinfo.html')
+    post = "empty";
+    if(request.method == "POST"):
+        post = request.form["stockName"];
+        stockID = post.split(':', 1 )[0];
+        post = post.split(':',1)[1];
+
+    return render_template('stockinfo.html', stockName=post, stockID = stockID)
 
 
 @app.errorhandler(404)
