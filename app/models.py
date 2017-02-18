@@ -6,10 +6,10 @@ followers = db.Table('followers',
     db.Column('followed_id', db.Integer, db.ForeignKey('User.id'))
 )
 
-# stock_list_table = db.Table('followers',
-#     db.Column('user_id', db.Integer, db.ForeignKey('User.id')),
-#     db.Column('stk_id', db.Integer, db.ForeignKey('Stock.stkid'))
-# )
+stock_list_table = db.Table('fav_stock_list',
+    db.Column('user_id', db.Integer, db.ForeignKey('User.id')),
+    db.Column('stk_id', db.String(64), db.ForeignKey('Stock.stkid'))
+)
 
 class User(db.Model):
     __tablename__ = 'User'
@@ -17,8 +17,11 @@ class User(db.Model):
     password = db.Column(db.String(30), index=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
     id = db.Column(db.Integer, Sequence('user_id_seq'), primary_key=True, nullable=False)
-    # stocks = db.relationship('Stock', secondary= stock_list_table, primaryjoin=(stock_list_table.c.User_id == id),  
-    #                            backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+    stocks = db.relationship('Stock',
+                                secondary= stock_list_table,
+                                primaryjoin=(stock_list_table.c.user_id == id), 
+                                backref=db.backref('fav_stock', lazy='dynamic'),
+                                lazy='dynamic')
 
     # reference microblog
     followed = db.relationship('User', 
