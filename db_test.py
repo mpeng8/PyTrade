@@ -50,7 +50,7 @@ class TestCase(unittest.TestCase):
 
     def test_add_stocks(self):
         # make 1 user
-        u1 = User(nickname='sjb', email='sjb@example.com')
+        u1 = User(username='sjb', email='sjb@example.com')
         db.session.add(u1)
         # make 2 stocks
         s1 = Stock(stkid = 'fb')
@@ -59,13 +59,10 @@ class TestCase(unittest.TestCase):
         db.session.add(s2)
         db.session.commit()
         u1.insterest_in(s1)
-        assert u1.stocks.
-
-
 
     def test_delete_post(self):
         # create a user and a post
-        u = User(nickname='john', email='john@example.com')
+        u = User(username='john', email='john@example.com')
         p = Post(body='test post', author=u, timestamp=datetime.utcnow())
         db.session.add(u)
         db.session.add(p)
