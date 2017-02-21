@@ -4,7 +4,8 @@
   stroke: #000;
 }
 .chart .bar.up-day path {
-stroke: green;
+    stroke: green;
+    fill:green;
 }
 
 .chart .bar.down-day path {
@@ -30,4 +31,8 @@ stroke: green;
     stroke: grey;
     fill: black;
     fill-opacity: 0.2;
+}
+.chart .overlay {
+    stroke-width: 0px;
+    fill-opacity: 0;
 }
