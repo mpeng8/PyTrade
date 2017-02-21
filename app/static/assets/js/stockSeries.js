@@ -244,5 +244,8 @@ $.ajax({
       redrawChart();
       updateViewportFromChart();
       updateZoomFromChart();
-    }
+    },
+  error: function(xhr, textStatus, errorThrown) {
+    // Handle error
+  }
 });
