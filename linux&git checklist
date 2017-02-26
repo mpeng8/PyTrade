@@ -1,0 +1,34 @@
+linux&git checklist
+
+1. 
+Issue:
+delete folder
+Sol:
+Close any git clients that might be running.
+Set the permissions to delete first:
+chmod -R 777 folder
+Try to force the deletion:
+rm -rf folder
+
+2.
+Issue:
+ml4t@ml4t-VirtualBox:/media/sf_cs$ git clone https://github.com/mpeng8/PyTrade
+Cloning into 'PyTrade'...
+fatal: unable to access 'https://github.com/mpeng8/PyTrade/': Could not resolve host: github.com
+Sol:
+1. sudo reboot
+2. git config --global --unset https.proxy
+
+3.
+Issue:
+git ignore
+Sol:
+0.in git root folder
+1. touch .gitignore
+2. add .gitignore
+3. subl/gedit .gitignore
+4. edit file, copy .gitignore file in mongazer branch 
+5. git config --global core.excludesfile ~/.gitignore_global
+6) git rm -r --cached .
+7) git add . 
+8) git commit -m "blablabla"

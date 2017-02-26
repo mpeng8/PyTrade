@@ -1,0 +1,21 @@
+<table class="table table-hover table-bordered">
+      <thead class="thead-inverse">
+        <tr>
+        <th>My Followed list</th>
+        <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for u in followed %}
+          <tr>
+            <td>
+              <form action = "/lookup_profile" method = "POST"> <input name = "name" role="button" class="btn btn-link" type="submit" value = "{{u.username}}"></input></form>
+            </td>
+            <td>
+              <a role ="button" href="{{ url_for('unfollow', user = u.username)}}" class="btn btn-default">Unfollow</a>
+            </td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>

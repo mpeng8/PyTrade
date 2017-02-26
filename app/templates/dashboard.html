@@ -1,337 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon.png">
+{% extends "base_template.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block mainContent %}
+<div class="row">
+  <div class="col-lg-12">
+    <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
+      <li><i class="fa fa-laptop"></i>Dashboard</li>
+    </ol>
+  </div>
+</div>
+<div class="row">
+  <!-- Bar -->
+  <div class="col-lg-9 col-md-12">
+    <section class="panel">
+        <header class="panel-heading">
+         Your Accound Balance Summary
+        </header>
+        <div class="panel-body text-center">
+          <p class="text-right">grey: Gross Income</p>
+          <p class="text-right">blue: Coperate Loss</p>
+          <canvas id="bar" height="300" width="500"></canvas>
+        </div>
+    </section>
+  </div>
+  <div class="col-md-3">
+      <!-- List starts -->
+    <p class = "text-center"> Trending Tickers</p>
+    <ul class="today-datas">
+        <!-- List #1 -->
+        <li>
+          <!-- Graph -->
+          <div><span id="todayspark1" class="spark"></span></div>
+          <!-- Text -->
+          <div class="datas-text">FRAN: Gross Income</div>
+        </li>
+        <li>
+          <div><span id="todayspark2" class="spark"></span></div>
+          <div class="datas-text">GE: Gross Income</div>
+        </li>
+        <li>
+          <div><span id="todayspark3" class="spark"></span></div>
+          <div class="datas-text">STI: 30.55% Bounce Rate</div>
+        </li>
+        <li>
+          <div><span id="todayspark4" class="spark"></span></div>
+          <div class="datas-text">GE: $16,0000000 Revenue/Day</div>
+        </li>
+        <li>
+          <div><span id="todayspark5" class="spark"></span></div>
+          <div class="datas-text">FB: stock price over time</div>
+        </li>
+      </ul>
+      </div>
+</div>
+{% endblock %}
 
-    <title>PyTrade Dashboard</title>
+{% block script %}
 
-    <!-- Bootstrap CSS -->    
-    <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- bootstrap theme -->
-    <link href="static/assets/css/bootstrap-theme.css" rel="stylesheet">
-    <!--external css-->
-    <!-- font icon -->
-    <link href="static/assets/css/elegant-icons-style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--custom styles-->
-    <link href="static/bootstrap/css/style.css" rel="stylesheet">
-    <link href="static/assets/css/style-responsive.css" rel="stylesheet" />
-    <link href="static/assets/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-  <!-- container section start -->
-  <section id="container" class="">
-
-      <header class="header dark-bg">
-            <div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
-
-            <!--logo start-->
-            <a href="dashboard" class="logo">PyTrade</a>
-            <!--logo end-->
-
-            <div class="top-nav notification-row">               
-                <!-- notificatoin dropdown start-->
-                <ul class="nav pull-right top-menu">
-                    <!-- inbox notificatoin start-->
-                    <li id="mail_notificatoin_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-important">4</span>
-                        </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <div class="notify-arrow notify-arrow-blue"></div>
-                            <li>
-                                <p class="blue">You have 4 new messages</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="static/images/mpeng-profile.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Mengyi Peng</span>
-                                    <span class="time">1 min</span>
-                                    </span>
-                                    <span class="message">
-                                        We have meeting on Thursday!
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="static/images/mxie-profile.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Mingjun Xie</span>
-                                    <span class="time">5 mins</span>
-                                    </span>
-                                    <span class="message">
-                                        What's up?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="static/images/bobama-profile.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Barack Obama</span>
-                                    <span class="time">2 hrs</span>
-                                    </span>
-                                    <span class="message">
-                                        I really like PyTrade.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="static/images/jxi-profile.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Jinping Xi</span>
-                                    <span class="time">1 day</span>
-                                    </span>
-                                    <span class="message">
-                                        PyTrade is so great.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">See all messages</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- inbox notificatoin end -->
-                    <!-- alert notification start-->
-                    <li id="alert_notificatoin_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-                            <i class="fa fa-bell-o"></i>
-                            <span class="badge bg-important">3</span>
-                        </a>
-                        <ul class="dropdown-menu extended notification">
-                            <div class="notify-arrow notify-arrow-blue"></div>
-                            <li>
-                                <p class="blue">You have 3 new notifications</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-primary"><i class="icon_profile"></i></span> 
-                                    Xinmin follows you.
-                                    <span class="small italic pull-right">5 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-warning"><i class="icon_pin"></i></span>  
-                                    New stock infomration!
-                                    <span class="small italic pull-right">50 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-success"><i class="icon_like"></i></span> 
-                                    Mingjun joined group "PyTrade"
-                                    <span class="small italic pull-right"> Today</span>
-                                </a>
-                            </li>                            
-                            <li>
-                                <a href="#">See all notifications</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- alert notification end-->
-                    <!-- user login dropdown start-->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="profile-ava">
-                                <img alt="ava" src="static/images/yzhou-profile.jpg" >
-                            </span>
-                            {% block content %}
-                              <span class="username">{{ session['username'] }}</span>
-                            {% endblock %}
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            <li class="eborder-top">
-                                <a href="#"><i class="icon_profile"></i> My Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-                            </li>
-                            <li>
-                                <a href="logout"><i class="icon_key_alt"></i> Log out</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- user login dropdown end -->
-                </ul>
-                <!-- notificatoin dropdown end-->
-            </div>
-      </header>      
-      <!--header end-->
-
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
-                  <li class="active">
-                      <a class="" href="dashboard">
-                          <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="industrynews" class="">
-                          <i class="fa fa-newspaper-o"></i>
-                          <span>Industry News</span>
-                      </a>
-
-                  </li>       
-                  <li class="sub-menu">
-                      <a href="stocklist" class="">
-                          <i class="icon_desktop"></i>
-                          <span>My stock list</span>
-                      </a>
-                  </li>
-
-                             
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_profile"></i>
-                          <span>Follower List</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="#">My followers</a></li>
-                          <li><a class="" href="#">My followees</a></li>
-                      </ul>
-                  </li>
-                  
-                  <li class="sub-menu">
-                      <a href="#;" class="">
-                          <i class="icon_profile"></i>
-                          <span>Group List</span>
-                      </a>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
-                          <span>About</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                       <ul class="sub">                    
-                          <li><a class="" href="about">Blank Page</a></li>
-                          <li><a class="" href="404.html">404 Error</a></li>
-                      </ul>
-                  </li>
-
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">            
-              <!--overview start-->
-            <div class="row">
-              <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
-                <ol class="breadcrumb">
-                  <li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
-                  <li><i class="fa fa-laptop"></i>Dashboard</li>           
-                </ol>
-              </div>
-            </div>
-            <div class="row">
-              <!-- Bar -->
-              <div class="col-lg-9 col-md-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                     Your Accound Balance Summary
-                    </header>
-                    <div class="panel-body text-center">
-                      <p class="text-right">grey: Gross Income</p>
-                      <p class="text-right">blue: Coperate Loss</p>
-                      <canvas id="bar" height="300" width="500"></canvas>
-                    </div>
-                </section>
-              </div>
-              <div class="col-md-3">
-                  <!-- List starts -->
-                <p class = "text-center"> Trending Tickers</p>
-                <ul class="today-datas">
-                    <!-- List #1 -->
-                    <li>
-                      <!-- Graph -->
-                      <div><span id="todayspark1" class="spark"></span></div>
-                      <!-- Text -->
-                      <div class="datas-text">FRAN: Gross Income</div>
-                    </li>
-                    <li>
-                      <div><span id="todayspark2" class="spark"></span></div>
-                      <div class="datas-text">GE: Gross Income</div>
-                    </li>
-                    <li>
-                      <div><span id="todayspark3" class="spark"></span></div>
-                      <div class="datas-text">STI: 30.55% Bounce Rate</div>
-                    </li>
-                    <li>
-                      <div><span id="todayspark4" class="spark"></span></div>
-                      <div class="datas-text">GE: $16,0000000 Revenue/Day</div>
-                    </li>
-                    <li>
-                      <div><span id="todayspark5" class="spark"></span></div>
-                      <div class="datas-text">FB: stock price over time</div>
-                    </li>
-                  </ul>
-                  </div>
-            </div>
-
-          </section>
-      </section>
-      <!--main content end-->
-  </section>
-  <!-- container section start -->
-
-    <!-- javascripts -->
-    <script src="static/assets/js/jquery.js"></script>
-    <script src="static/assets/js/jquery-ui-1.10.4.min.js"></script>
-    <script src="static/bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="static/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <!-- bootstrap -->
-    <script src="static/assets/js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
-    <script src="static/assets/js/jquery.scrollTo.min.js"></script>
-    <script src="static/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <!-- charts scripts -->
     <script src="static/assets/js/jquery.sparkline.js" type="text/javascript"></script>
-
-    <!-- custom select -->
-    <script src="static/assets/js/jquery.customSelect.min.js" ></script>
-    <!--custome script for all page-->
-    <script src="static/bootstrap/js/scripts.js"></script>
     <!-- custom script for this page-->
     <script src="static/assets/js/charts.js"></script>
-    <script src="static/assets/js/chart.js"></script>
+    <script src="static/assets/js/Chart.js"></script>
     <script src="static/assets/js/jquery.slimscroll.min.js"></script>
 
     <script>
-        //custom select box
-        $(function(){
-            $('select.styled').customSelect();
-        });
+
         //can change bar data here
         var barChartData = {
           labels : ["2013","2014","2015","2016"],
@@ -351,5 +86,4 @@
         }
         var myLine = new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
     </script>
-  </body>
-</html>
+{% endblock %}
