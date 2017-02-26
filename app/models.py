@@ -24,7 +24,7 @@ class User(db.Model):
                                 lazy='dynamic')
 
     # reference microblog
-    followed = db.relationship('User', 
+    followed = db.relationship('User',
                                secondary=followers, 
                                primaryjoin=(followers.c.follower_id == id), 
                                secondaryjoin=(followers.c.followed_id == id), 
@@ -50,15 +50,28 @@ class User(db.Model):
 
     @property
     def get_name(self):
-        return username
-    
+        return self.username
+
     @property
     def get_mail(self):
-        return email
-    
+        return self.email
+
     @property
     def get_id(self):
-        return id
+        return str(self.id).encode("utf-8").decode("utf-8") 
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
 
     def follow(self, user):
         if not self.is_following(user):

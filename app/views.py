@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, session, abort, request, flash
+from flask import render_template, url_for, redirect, session, abort, request, flash, g
 from app import app
 import re
 from app import db
@@ -9,13 +9,21 @@ import json
 
 @app.route('/')
 
+
+@app.route('/timeout')
+def timeout():
+    error = "TIME OUT, please log in again."
+    return render_template('login.html', error = error)
+
+#############################################################################################################
 @app.route('/index')
 def index():
     if not session.get('logged_in'):
         return render_template('index.html')
-    else:
-        return dashboard()
+    return dashboard()
 
+############################################################################################################
+# login Signup functions
 @app.route('/admin', methods = ['GET','POST'])
 def adminlogin():
     return render_template('adminlogin.html')
@@ -36,7 +44,7 @@ def userLogIn():
     error = None
     un = request.form['username']
     q_user = User.query.filter(User.username == un).first()
-
+    print type(q_user)
     if q_user == None:
         error = 'User not existed.'
     elif request.form['password'] == q_user.password:
@@ -115,29 +123,42 @@ def userSignup():
         return index()
 
     return render_template('signup.html', error= error)
-
+################################################################################################
+# page direction functions
 @app.route("/dashboard")
 def dashboard():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
     return render_template('dashboard.html')
 
 @app.route("/admindashboard")
 def admindashboard():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+
     return render_template('admindashboard.html')
 
 @app.route("/about")
 def about():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+
     return render_template('blank.html')
 
+##############################################################################################
+#stock list functions
 @app.route("/stocklist", methods = ['GET', 'POST'])
 def stocklist():
-    return render_template('stocklist.html')
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
 
-@app.route("/industrynews")
-def industrynews():
-    return render_template('industrynews.html')
+    return render_template('stocklist.html')
 
 @app.route("/stockinfo", methods = ['GET', 'POST'])
 def stockinfo():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+
     post = "empty";
     if(request.method == "POST"):
         post = request.form["stockName"];
@@ -145,8 +166,59 @@ def stockinfo():
         post = post.split(':',1)[1];
 
     return render_template('stockinfo.html', stockName=post, stockID = stockID)
+#############################################################################################################
 
+#Social network functions
 
+@app.route("/myprofile")
+def myprofile():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+    q_user = User.query.filter(User.username == session['username']).first()
+    return render_template('profile.html', me = q_user, cur_user = q_user)
+
+@app.route("/followers", methods = ['GET', 'POST'])
+def followerslist():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+
+    q_user = User.query.filter(User.username == session['username']).first()
+
+    followed = q_user.followed.all()
+    follower = q_user.followers.all()
+
+    return render_template('follower.html', follower = follower, followed = followed)
+
+@app.route("/follow/<user>")
+def follow(user):
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+    q_user = User.query.filter(User.username == session['username']).first()
+    q2_user = User.query.filter(User.username == user).first()
+    q_user.follow(q2_user)
+    db.session.commit()
+    return redirect(url_for('followerslist'))
+
+@app.route("/unfollow/<user>")
+def unfollow(user):
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+    q_user = User.query.filter(User.username == session['username']).first()
+    q2_user = User.query.filter(User.username == user).first()
+    q_user.unfollow(q2_user)
+    db.session.commit()
+    return redirect(url_for('followerslist'))
+
+@app.route("/lookup_profile", methods=['POST','GET'])
+def lookup_profile():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+    user = request.form['name']
+    q_user = User.query.filter(User.username == session['username']).first()
+    q2_user = User.query.filter(User.username == user).first()
+    return render_template('profile.html', me = q_user, cur_user = q2_user)
+
+# error handling
 @app.errorhandler(404)
 def not_found(e):
     return render_template("404.html")
