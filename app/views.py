@@ -9,18 +9,17 @@ import json
 
 @app.route('/')
 
-
-@app.route('/timeout')
-def timeout():
-    error = "TIME OUT, please log in again."
-    return render_template('login.html', error = error)
-
 #############################################################################################################
 @app.route('/index')
 def index():
     if not session.get('logged_in'):
         return render_template('index.html')
     return dashboard()
+
+@app.route('/timeout')
+def timeout():
+    error = "TIME OUT, please log in again."
+    return render_template('login.html', error = error)
 
 ############################################################################################################
 # login Signup functions
