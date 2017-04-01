@@ -25,15 +25,24 @@ function createCORSRequest(method, url) {
 }
 
 var stockIDs = document.getElementById("stockID_info").innerText;
-//console.log(stockID);
-
-var todayDate = new Date();
-//console.log(todayDate);
+var endDate = new Date();
+console.log(endDate);
 var oldDate = new Date();
-oldDate.setDate(todayDate.getDate() - 30);
-//console.log(oldDate);
+oldDate.setDate(endDate.getDate() - 30);
+$.ajax({
+  type:"GET",
+  url:"/getTime",
+  success: function(time) {
+    dates = time.data;
+    if (dates['startDate'].length > 1) {
+      oldDate = new Date(dates['startDate']);
+    }
+    if (dates['endDate'].length > 1) {
+      endDate = new Date(dates['endDate']);
+    }
 
-var dateLT = todayDate.toJSON().slice(0,10).replace(/-/g,'');
+
+var dateLT = endDate.toJSON().slice(0,10).replace(/-/g,'');
 var dateGTE = oldDate.toJSON().slice(0,10).replace(/-/g,'');
 console.log(dateGTE);
 console.log(dateLT);
@@ -274,3 +283,6 @@ xhr.onerror = function() {
 };
 
 xhr.send();
+
+}
+});

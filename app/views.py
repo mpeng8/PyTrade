@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, session, abort, request, flash
+from flask import render_template, url_for, redirect, session, abort, request, flash, jsonify
 from app import app
 import re
 from app import db
@@ -64,6 +64,7 @@ def adminLogIn():
 def logout():
     session['logged_in'] = False
     session['username'] = None
+    session.clear();
     return index()
 
 @app.route('/signup', methods = ['GET','POST'])
@@ -136,6 +137,26 @@ def stocklist():
 def industrynews():
     return render_template('industrynews.html')
 
+@app.route("/editTime",methods=['GET','POST'])
+def editTime():
+    userOldDate= request.form['startDate'];
+    session['startDate']=userOldDate;
+    session['endDate']=request.form['endDate'];
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'])
+
+@app.route("/getTime",methods=['GET'])
+def getTime():
+    data={}
+    if 'startDate' in session:
+        data['startDate']=session['startDate'];
+    else:
+        data['startDate']=""
+    if 'endDate' in session:
+        data['endDate']=session['endDate']
+    else:
+        data['endDate']=""
+    return jsonify(data=data)
+
 @app.route("/stockinfo", methods = ['GET', 'POST'])
 def stockinfo():
     post = "empty";
@@ -144,7 +165,10 @@ def stockinfo():
         post = request.form["stockName"];
         stockIDone = post.split(':', 1 )[0];
         post = post.split(':',1)[1];
-
+        session['stockIDone']=stockIDone;
+        session['stockName']=post;
+    post=session['stockName'];
+    stockIDone=session['stockIDone'];
     return render_template('stockinfo.html', stockName=post, stockID = stockIDone)
 
 

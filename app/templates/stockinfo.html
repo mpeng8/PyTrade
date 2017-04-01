@@ -49,15 +49,16 @@
                     </table>
                   </div>
                     <div>
-                      <p>Timeline Selector</p>
+                      <p>Timeline Selector <img src="static/images/questionIcon.png" class="popper" data-popbox="pop1" style="width: 5%; height: 5%"></p>
                     </div>
+                    <div  id="pop1" class="popbox">You can select timeframe for stock display.</div>
                     <div class="col-lg-6 col-md-9">
-                    <form>
+                    <form action="/editTime" method = "POST">
                       <div class="form-group">
-                        Start Date: <input type="date" class="form-control" id="startDate" Placeholder="start Date"></input>
+                        Start Date: <input type="date" class="form-control"  name="startDate" id="startDate" Placeholder="start Date"></input>
                         End Date:
-                        <input type="date" class="form-control" id="endDate" Placeholder="end Date"></input>
-                        <button type="button" class="btn btn-default">Submit</button>
+                        <input type="date" class="form-control" name = "endDate" id="endDate" Placeholder="end Date"></input>
+                        <input type="submit" class="btn btn-default"></input>
                       </div>
                     </form>
                     </div>
@@ -73,8 +74,7 @@
     <script src="static/assets/js/jquery.ajax-cross-origin.min.js"></script> -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="static/assets/js/candlestickSeries.js"></script>
-    <!-- chart -->
+    <script type="text/javascript" src="static/assets/js/displayInfo.js"></script>
     <script type="text/javascript" src="static/assets/js/stockSeries.js"></script>
-
 
 {% endblock %}
