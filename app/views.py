@@ -9,18 +9,17 @@ import json
 
 @app.route('/')
 
-
-@app.route('/timeout')
-def timeout():
-    error = "TIME OUT, please log in again."
-    return render_template('login.html', error = error)
-
 #############################################################################################################
 @app.route('/index')
 def index():
     if not session.get('logged_in'):
         return render_template('index.html')
     return dashboard()
+
+@app.route('/timeout')
+def timeout():
+    error = "TIME OUT, please log in again."
+    return render_template('login.html', error = error)
 
 ############################################################################################################
 # login Signup functions
@@ -166,6 +165,20 @@ def stockinfo():
         post = post.split(':',1)[1];
 
     return render_template('stockinfo.html', stockName=post, stockID = stockID)
+
+@app.route('/searchStock', methods = ['GET', 'POST'])
+def searchStock():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+
+    post = request.form["stockName"];
+    if (not post):
+        print "aaa"
+    stockID = post.split(':', 1 )[0];
+    post = post.split(':',1)[1];
+
+    return render_template('stockinfo.html', stockName=post, stockID = stockID)
+
 #############################################################################################################
 
 #Social network functions
