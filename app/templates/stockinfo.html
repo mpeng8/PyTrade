@@ -54,8 +54,9 @@
                     <div class="col-lg-6 col-md-9">
                     <form>
                       <div class="form-group">
-                        <input type="text" class="form-control" id="startDate" Placeholder="start Date"></input>
-                        <input type="text" class="form-control" id="endDate" Placeholder="end Date">
+                        Start Date: <input type="date" class="form-control" id="startDate" Placeholder="start Date"></input>
+                        End Date:
+                        <input type="date" class="form-control" id="endDate" Placeholder="end Date"></input>
                         <button type="button" class="btn btn-default">Submit</button>
                       </div>
                     </form>
@@ -68,11 +69,12 @@
 {% block script %}
     <!-- javascripts -->
     <script src="static/assets/js/jquery.js"></script>
-    <script src="static/assets/js/jquery.ajax-cross-origin.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="static/assets/js/jquery.ajax-cross-origin.min.js"></script> -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="static/assets/js/candlestickSeries.js"></script>
+    <script type="text/javascript" src="static/assets/js/candlestickSeries.js"></script>
     <!-- chart -->
-    <script src="static/assets/js/stockSeries.js"></script>
+    <script type="text/javascript" src="static/assets/js/stockSeries.js"></script>
 
 
 {% endblock %}

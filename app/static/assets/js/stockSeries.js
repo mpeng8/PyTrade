@@ -6,8 +6,25 @@ function stock(data){
   this.low =data[4];
 }
 
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // Check if the XMLHttpRequest object has a "withCredentials" property.
+    // "withCredentials" only exists on XMLHTTPRequest2 objects.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // Otherwise, check if XDomainRequest.
+    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // Otherwise, CORS is not supported by the browser.
+    xhr = null;
+  }
+  return xhr;
+}
 
-var stockID = document.getElementById("stockID_info").innerText;
+var stockIDs = document.getElementById("stockID_info").innerText;
 //console.log(stockID);
 
 var todayDate = new Date();
@@ -19,233 +36,241 @@ oldDate.setDate(todayDate.getDate() - 30);
 var dateLT = todayDate.toJSON().slice(0,10).replace(/-/g,'');
 var dateGTE = oldDate.toJSON().slice(0,10).replace(/-/g,'');
 console.log(dateGTE);
+console.log(dateLT);
+var url = "https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?date.gte="+dateGTE+"&date.lt=" + dateLT+"&ticker=" + stockIDs+"&api_key=sXBsPYtsefUf_qaFxNDK";
 
-$.ajax({
-    crossOrigin: true,
-    url: "https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?date.gte="+dateGTE+"&date.lt=" + dateLT+"&ticker=" + stockID+"&api_key=sXBsPYtsefUf_qaFxNDK",
-    success: function(data) {
-      //console.log(data);
-      var stockCodes = JSON.parse(data);
-      var length = stockCodes.datatable.data.length;
-      var stockData = [];
-      for (var i = 0; i < length; i++) {
-        stockData.push(new stock(stockCodes.datatable.data[i]));
-          //console.log(stockData[i]);
-      }
-      //d3 margin convention
-      var margin = {top: 20, right: 20, bottom: 30, left: 35},
-          width = 770 - margin.left - margin.right,
-          height = 400 - margin.top - margin.bottom;
+var xhr = createCORSRequest('GET', url);
 
-      var xScale = d3.time.scale(),
-          yScale = d3.scale.linear();
+if (!xhr) {
+  throw new Error('CORS not supported');
+}
 
-      var xAxis = d3.svg.axis()
-          .scale(xScale)
-          .orient('bottom')
-          .ticks(5);
+xhr.onload = function() {
+ var responseText = xhr.responseText;
+ var stockCodes = JSON.parse(responseText);
+ console.log(stockCodes);
+ var length = stockCodes.datatable.data.length;
+ var stockData = [];
+ for (var i = 0; i < length; i++) {
+   stockData.push(new stock(stockCodes.datatable.data[i]));
+     //console.log(stockData[i]);
+ }
+ //d3 margin convention
+ var margin = {top: 20, right: 20, bottom: 30, left: 35},
+     width = 770 - margin.left - margin.right,
+     height = 400 - margin.top - margin.bottom;
 
-      var yAxis = d3.svg.axis()
-          .scale(yScale)
-          .orient('left');
+ var xScale = d3.time.scale(),
+     yScale = d3.scale.linear();
 
-      var series = candlestick ()
-          .xScale(xScale)
-          .yScale(yScale);
+ var xAxis = d3.svg.axis()
+     .scale(xScale)
+     .orient('bottom')
+     .ticks(5);
 
-        // var gridlines = gridlines ()
-        //     .xScale(xScale)
-        //     .yScale(yScale)
-        //     .xTicks(10)
-        //     .yTicks(5);
+ var yAxis = d3.svg.axis()
+     .scale(yScale)
+     .orient('left');
 
-      var svg = d3.select('.chart').append('svg')
-                  .attr('width', width + margin.left + margin.right)
-                  .attr('height', height + margin.top + margin.bottom);
+ var series = candlestick ()
+     .xScale(xScale)
+     .yScale(yScale);
 
-        // Create chart
-      var g = svg.append('g')
-                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+   // var gridlines = gridlines ()
+   //     .xScale(xScale)
+   //     .yScale(yScale)
+   //     .xTicks(10)
+   //     .yTicks(5);
 
-      // Create plot area
-      var plotArea = g.append('g');
+ var svg = d3.select('.chart').append('svg')
+             .attr('width', width + margin.left + margin.right)
+             .attr('height', height + margin.top + margin.bottom);
 
-      plotArea.append('clipPath')
-              .attr('id', 'plotAreaClip')
-              .append('rect')
-              .attr({ width: width, height: height });
+   // Create chart
+ var g = svg.append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-      plotArea.attr('clip-path', 'url(#plotAreaClip)');
+ // Create plot area
+ var plotArea = g.append('g');
 
-        // Set scale domains
-      var minN = d3.min(stockData, function (d) { return d.date; }).getTime(),
-          maxN = d3.max(stockData, function (d) { return d.date; }).getTime();
-      var minDate = new Date(minN - 8.64e7),
-          maxDate = new Date(maxN + 8.64e7);
-      var yMin = d3.min(stockData, function (d) { return d.low; }),
-          yMax = d3.max(stockData, function (d) { return d.high; });
+ plotArea.append('clipPath')
+         .attr('id', 'plotAreaClip')
+         .append('rect')
+         .attr({ width: width, height: height });
 
-        // There are 8.64e7 milliseconds in a day.
-      xScale.domain([
-          new Date(maxDate.getTime() - (8.64e7 * 31.5)),
-          new Date(maxDate.getTime() + 8.64e7)
-      ]);
+ plotArea.attr('clip-path', 'url(#plotAreaClip)');
 
-      yScale.domain(
-          [
-              d3.min(stockData, function (d) {
-                return d.low;
-              }),
-              d3.max(stockData, function (d) {
-                return d.high;
-            })
-          ]
-      ).nice();
+   // Set scale domains
+ var minN = d3.min(stockData, function (d) { return d.date; }).getTime(),
+     maxN = d3.max(stockData, function (d) { return d.date; }).getTime();
+ var minDate = new Date(minN - 8.64e7),
+     maxDate = new Date(maxN + 8.64e7);
+ var yMin = d3.min(stockData, function (d) { return d.low; }),
+     yMax = d3.max(stockData, function (d) { return d.high; });
 
-      // Set scale ranges
-      xScale.range([0, width]);
-      yScale.range([height, 0]);
-      // Draw axes
-      g.append('g')
-      .attr('class', 'x axis')
-      .attr('transform', 'translate(0,' + height + ')')
-      .call(xAxis);
+   // There are 8.64e7 milliseconds in a day.
+ xScale.domain([
+     new Date(maxDate.getTime() - (8.64e7 * 31.5)),
+     new Date(maxDate.getTime() + 8.64e7)
+ ]);
 
-      g.append('g')
-      .attr('class', 'y axis')
-      .call(yAxis);
+ yScale.domain(
+     [
+         d3.min(stockData, function (d) {
+           return d.low;
+         }),
+         d3.max(stockData, function (d) {
+           return d.high;
+       })
+     ]
+ ).nice();
 
-      // plotArea.call(gridlines);
+ // Set scale ranges
+ xScale.range([0, width]);
+ yScale.range([height, 0]);
+ // Draw axes
+ g.append('g')
+ .attr('class', 'x axis')
+ .attr('transform', 'translate(0,' + height + ')')
+ .call(xAxis);
 
-      // Draw the series.
-      var dataSeries = plotArea.append('g')
-      .attr('class', 'series')
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-      .datum(stockData)
-      .call(series);
+ g.append('g')
+ .attr('class', 'y axis')
+ .call(yAxis);
 
+ // plotArea.call(gridlines);
 
-      var navWidth = width,
-      navHeight = 100 - margin.top - margin.bottom;
-
-      var navChart = d3.select('.chart').append('svg')
-        .classed('navigator', true)
-        .attr('width', navWidth + margin.left + margin.right)
-        .attr('height', navHeight + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+ // Draw the series.
+ var dataSeries = plotArea.append('g')
+ .attr('class', 'series')
+ .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+ .datum(stockData)
+ .call(series);
 
 
-      var navXScale = d3.time.scale()
-          .domain([minDate, maxDate])
-          .range([0, navWidth]),
+ var navWidth = width,
+ navHeight = 100 - margin.top - margin.bottom;
 
-      navYScale = d3.scale.linear()
-          .domain([yMin, yMax])
-          .range([navHeight, 0]);
+ var navChart = d3.select('.chart').append('svg')
+   .classed('navigator', true)
+   .attr('width', navWidth + margin.left + margin.right)
+   .attr('height', navHeight + margin.top + margin.bottom)
+   .append('g')
+   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-      var navXAxis = d3.svg.axis()
-        .scale(navXScale)
-        .orient('bottom');
 
-      navChart.append('g')
-        .attr('class', 'x axis')
-        .attr('transform', 'translate(0,' + navHeight + ')')
-        .call(navXAxis);
+ var navXScale = d3.time.scale()
+     .domain([minDate, maxDate])
+     .range([0, navWidth]),
 
-      var navData = d3.svg.area()
-        .x(function (d) { return navXScale(d.date); })
-        .y0(navHeight)
-        .y1(function (d) { return navYScale(d.close); });
+ navYScale = d3.scale.linear()
+     .domain([yMin, yMax])
+     .range([navHeight, 0]);
 
-      var navLine = d3.svg.line()
-        .x(function (d) { return navXScale(d.date); })
-        .y(function (d) { return navYScale(d.close); });
+ var navXAxis = d3.svg.axis()
+   .scale(navXScale)
+   .orient('bottom');
 
-      navChart.append('path')
-        .attr('class', 'data')
-        .attr('d', navData(stockData));
+ navChart.append('g')
+   .attr('class', 'x axis')
+   .attr('transform', 'translate(0,' + navHeight + ')')
+   .call(navXAxis);
 
-      navChart.append('path')
-        .attr('class', 'line')
-        .attr('d', navLine(stockData));
+ var navData = d3.svg.area()
+   .x(function (d) { return navXScale(d.date); })
+   .y0(navHeight)
+   .y1(function (d) { return navYScale(d.close); });
 
-      function redrawChart() {
-          dataSeries.call(series);
-          svg.select('.x.axis').call(xAxis);
-      }
+ var navLine = d3.svg.line()
+   .x(function (d) { return navXScale(d.date); })
+   .y(function (d) { return navYScale(d.close); });
 
-      function updateViewportFromChart() {
-          if ((xScale.domain()[0] <= minDate) && (xScale.domain()[1] >= maxDate)) {
-              viewport.clear();
-          } else {
-              viewport.extent(xScale.domain());
-          }
-          navChart.select('.viewport').call(viewport);
-      }
+ navChart.append('path')
+   .attr('class', 'data')
+   .attr('d', navData(stockData));
 
-      function updateZoomFromChart() {
-          zoom.x(xScale);
-          var fullDomain = maxDate - minDate,
-              currentDomain = xScale.domain()[1] - xScale.domain()[0];
-          var minScale = currentDomain / fullDomain,
-              maxScale = minScale * 20;
-          zoom.scaleExtent([minScale, maxScale]);
-      }
+ navChart.append('path')
+   .attr('class', 'line')
+   .attr('d', navLine(stockData));
 
-      var viewport = d3.svg.brush()
-      .x(navXScale)
-      .on("brush", function () {
-          xScale.domain(viewport.empty() ? navXScale.domain() : viewport.extent());
-          redrawChart();
-      });
+ function redrawChart() {
+     dataSeries.call(series);
+     svg.select('.x.axis').call(xAxis);
+ }
 
-      var zoom = d3.behavior.zoom()
-      .x(xScale)
-      .on('zoom', function() {
-          if (xScale.domain()[0] < minDate) {
-  	    var x = zoom.translate()[0] - xScale(minDate) + xScale.range()[0];
-              zoom.translate([x, 0]);
-          } else if (xScale.domain()[1] > maxDate) {
-  	    var x = zoom.translate()[0] - xScale(maxDate) + xScale.range()[1];
-              zoom.translate([x, 0]);
-          }
-          redrawChart();
-          updateViewportFromChart();
-      });
+ function updateViewportFromChart() {
+     if ((xScale.domain()[0] <= minDate) && (xScale.domain()[1] >= maxDate)) {
+         viewport.clear();
+     } else {
+         viewport.extent(xScale.domain());
+     }
+     navChart.select('.viewport').call(viewport);
+ }
 
-      var overlay = d3.svg.area()
-          .x(function (d) { return xScale(d.date); })
-          .y0(0)
-          .y1(height);
+ function updateZoomFromChart() {
+     zoom.x(xScale);
+     var fullDomain = maxDate - minDate,
+         currentDomain = xScale.domain()[1] - xScale.domain()[0];
+     var minScale = currentDomain / fullDomain,
+         maxScale = minScale * 20;
+     zoom.scaleExtent([minScale, maxScale]);
+ }
 
-      plotArea.append('path')
-          .attr('class', 'overlay')
-          .attr('d', overlay(stockData))
-          .call(zoom);
+ var viewport = d3.svg.brush()
+ .x(navXScale)
+ .on("brush", function () {
+     xScale.domain(viewport.empty() ? navXScale.domain() : viewport.extent());
+     redrawChart();
+ });
 
-      viewport.on("brushend", function () {
-          updateZoomFromChart();
-      });
+ var zoom = d3.behavior.zoom()
+ .x(xScale)
+ .on('zoom', function() {
+     if (xScale.domain()[0] < minDate) {
+   var x = zoom.translate()[0] - xScale(minDate) + xScale.range()[0];
+         zoom.translate([x, 0]);
+     } else if (xScale.domain()[1] > maxDate) {
+   var x = zoom.translate()[0] - xScale(maxDate) + xScale.range()[1];
+         zoom.translate([x, 0]);
+     }
+     redrawChart();
+     updateViewportFromChart();
+ });
 
-      navChart.append("g")
-          .attr("class", "viewport")
-          .call(viewport)
-          .selectAll("rect")
-          .attr("height", navHeight);
+ var overlay = d3.svg.area()
+     .x(function (d) { return xScale(d.date); })
+     .y0(0)
+     .y1(height);
 
-      var daysShown = 12;
+ plotArea.append('path')
+     .attr('class', 'overlay')
+     .attr('d', overlay(stockData))
+     .call(zoom);
 
-      xScale.domain([
-          stockData[stockData.length - daysShown - 1].date,
-          stockData[stockData.length - 1].date
-      ]);
+ viewport.on("brushend", function () {
+     updateZoomFromChart();
+ });
 
-      redrawChart();
-      updateViewportFromChart();
-      updateZoomFromChart();
-    },
-  error: function(xhr, textStatus, errorThrown) {
-    // Handle error
-  }
-});
+ navChart.append("g")
+     .attr("class", "viewport")
+     .call(viewport)
+     .selectAll("rect")
+     .attr("height", navHeight);
+
+ var daysShown = 12;
+
+ xScale.domain([
+     stockData[stockData.length - daysShown - 1].date,
+     stockData[stockData.length - 1].date
+ ]);
+
+ redrawChart();
+ updateViewportFromChart();
+ updateZoomFromChart();
+};
+
+xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+};
+
+xhr.send();

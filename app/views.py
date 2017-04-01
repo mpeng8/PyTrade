@@ -139,12 +139,13 @@ def industrynews():
 @app.route("/stockinfo", methods = ['GET', 'POST'])
 def stockinfo():
     post = "empty";
+    stockIDone = "";
     if(request.method == "POST"):
         post = request.form["stockName"];
-        stockID = post.split(':', 1 )[0];
+        stockIDone = post.split(':', 1 )[0];
         post = post.split(':',1)[1];
 
-    return render_template('stockinfo.html', stockName=post, stockID = stockID)
+    return render_template('stockinfo.html', stockName=post, stockID = stockIDone)
 
 
 @app.errorhandler(404)
