@@ -109,6 +109,7 @@ xhr.onload = function() {
 
  plotArea.attr('clip-path', 'url(#plotAreaClip)');
 
+  var annotationValue = 65;
    // Set scale domains
  var minN = d3.min(stockData, function (d) { return d.date; }).getTime(),
      maxN = d3.max(stockData, function (d) { return d.date; }).getTime();
@@ -116,8 +117,11 @@ xhr.onload = function() {
      maxDate = new Date(maxN + 8.64e7);
  var yMin = d3.min(stockData, function (d) { return d.low; }),
      yMax = d3.max(stockData, function (d) { return d.high; });
+     yMin = (yMin < annotationValue) ? yMin : annotationValue;
+     yMax = (yMax > annotationValue) ? yMax : annotationValue;
+yScale.domain([yMin, yMax]).nice();
 
-   // There are 8.64e7 milliseconds in a day.
+// There are 8.64e7 milliseconds in a day.
  xScale.domain([
      new Date(maxDate.getTime() - (8.64e7 * 31.5)),
      new Date(maxDate.getTime() + 8.64e7)
@@ -225,6 +229,7 @@ xhr.onload = function() {
      zoom.scaleExtent([minScale, maxScale]);
  }
 
+
  var viewport = d3.svg.brush()
  .x(navXScale)
  .on("brush", function () {
@@ -266,7 +271,7 @@ xhr.onload = function() {
      .selectAll("rect")
      .attr("height", navHeight);
 
- var daysShown = 12;
+ var daysShown = 14;
 
  xScale.domain([
      stockData[stockData.length - daysShown - 1].date,
@@ -276,6 +281,21 @@ xhr.onload = function() {
  redrawChart();
  updateViewportFromChart();
  updateZoomFromChart();
+
+
+ var trackers = tracker()
+         .xScale(xScale)
+         .yScale(yScale)
+         .yValue('close')
+         .movingAverage(5)
+         .css('tracker-close-avg');
+
+plotArea.append('g')
+        .attr('class', 'trackers')
+        .datum(stockData)
+        .call(trackers);
+
+
 };
 
 xhr.onerror = function() {

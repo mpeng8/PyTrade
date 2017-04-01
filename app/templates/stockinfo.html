@@ -34,15 +34,23 @@
                           <td><p class="text-right">17.07-19.45</p></td>
                         </tr>
                          <tr>
-                          <td><p class="text-left">Open</p></td>
+                          <td><p class="text-left">
+                            <a href="#" class="openP_popper" data-popbox="openPrice">Open</a>
+                            <div  id="openPrice" class="popbox">Open Price Definition.</div>
+                          </p></td>
                           <td><p class="text-right">17.75</p></td>
                           <td><p class="text-left">52wk Range</p></td>
                           <td><p class="text-right">17.07-14.95</p></td>
-                        </tr>
+                         </tr>
                          <tr>
-                          <td><p class="text-left">Volume</p></td>
+                          <td><p class="text-left">
+                            <a href="#" class="volumeP_popper" data-popbox="volumeP">Volume</a>
+                            <div id="volumeP" class="popbox">the number of shares of a given stock that changed hands during a given day</div>
+                          </p></td>
                           <td><p class="text-right">0</p></td>
-                          <td><p class="text-left">Avg Vol.(3m)</p></td>
+                          <td><p class="text-left">
+                            <a href="#" class="avgVolumeP_popper" data-popbox="avgVolumeP">Avg Vol.(3m)</a>
+                            <div id="avgVolumeP" class="popbox">the average of volume in a given day</div></p></td>
                           <td><p class="text-right">N/A</p></td>
                         </tr>
                       </tbody>
@@ -75,6 +83,9 @@
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="static/assets/js/candlestickSeries.js"></script>
     <script type="text/javascript" src="static/assets/js/displayInfo.js"></script>
+    <script type="text/javascript" src="static/assets/js/tracker.js"></script>
+    <script type="text/javascript" src="static/assets/js/annotation.js"></script>
     <script type="text/javascript" src="static/assets/js/stockSeries.js"></script>
+
 
 {% endblock %}
