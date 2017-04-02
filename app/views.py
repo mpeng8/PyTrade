@@ -137,7 +137,6 @@ def about():
 
     return render_template('blank.html')
 
-
 ##############################################################################################
 #stock list functions
 @app.route("/stocklist", methods = ['GET', 'POST'])
@@ -146,27 +145,6 @@ def stocklist():
         return redirect(url_for('timeout'))
 
     return render_template('stocklist.html')
-
-
-@app.route("/editTime",methods=['GET','POST'])
-def editTime():
-    userOldDate= request.form['startDate'];
-    session['startDate']=userOldDate;
-    session['endDate']=request.form['endDate'];
-    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'])
-
-@app.route("/getTime",methods=['GET'])
-def getTime():
-    data={}
-    if 'startDate' in session:
-        data['startDate']=session['startDate'];
-    else:
-        data['startDate']=""
-    if 'endDate' in session:
-        data['endDate']=session['endDate']
-    else:
-        data['endDate']=""
-    return jsonify(data=data)
 
 @app.route("/stockinfo", methods = ['GET', 'POST'])
 def stockinfo():
@@ -241,3 +219,23 @@ def lookup_profile():
 @app.errorhandler(404)
 def not_found(e):
     return render_template("404.html")
+
+@app.route("/editTime",methods=['GET','POST'])
+def editTime():
+    userOldDate= request.form['startDate'];
+    session['startDate']=userOldDate;
+    session['endDate']=request.form['endDate'];
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'])
+
+@app.route("/getTime",methods=['GET'])
+def getTime():
+    data={}
+    if 'startDate' in session:
+        data['startDate']=session['startDate'];
+    else:
+        data['startDate']=""
+    if 'endDate' in session:
+        data['endDate']=session['endDate']
+    else:
+        data['endDate']=""
+    return jsonify(data=data)
