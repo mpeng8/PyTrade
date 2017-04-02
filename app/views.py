@@ -162,7 +162,6 @@ def stockinfo():
     post=session['stockName'];
     stockIDone=session['stockIDone'];
     return render_template('stockinfo.html', stockName=post, stockID = stockIDone)
-
 #############################################################################################################
 
 #Social network functions
