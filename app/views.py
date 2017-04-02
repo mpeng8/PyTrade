@@ -237,7 +237,7 @@ def lookup_profile():
     q2_user = User.query.filter(User.username == user).first()
     return render_template('profile.html', me = q_user, cur_user = q2_user)
 
-
+# error handling
 @app.errorhandler(404)
 def not_found(e):
     return render_template("404.html")
