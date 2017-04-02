@@ -20,6 +20,12 @@
                 <div class="col-lg-3">
                   <button type="button" class="btn btn-default">Predict</button>
                 </div>
+                <div class="col-lg-3" id="popup" style="background:#ccc;display: none;border:1px solid #000; width: 290px">
+                  <div class = "row" >
+                    <div><p id="select_high_price"></p>
+                    <p id="select_open_price"></p></div>
+                  </div>
+                </div>
               </div>
 
               <div class="row">
@@ -28,26 +34,35 @@
                     <table class="table table-bordered">
                       <tbody>
                         <tr>
-                          <td><p class="text-left">Prev close</p></td>
-                          <td><p class="text-right">25.22</p></td>
-                          <td><p class="text-left">Day's range</p></td>
-                          <td><p class="text-right">17.07-19.45</p></td>
+                          <td><p class="text-left">
+                            <a href="#" class="highP_popper" data-popbox="highPrice">High</a>
+                            <div  id="highPrice" class="popbox">the highest price at which a stock traded during the course of the day. Today's high is typically higher than the closing or opening price.</div>
+                          </p></td>
+                          <td><p class="text-right" id="today_high_price"></p></td>
+                          <td><p class="text-left">
+                            <a href="#" class="lowP_popper" data-popbox="lowPrice">Low</a>
+                            <div  id="lowPrice" class="popbox">the lowest price at which a stock traded during the course of the day.</div>
+                          </p></td>
+                          <td><p class="text-right" id="today_low_price"></p></td>
                         </tr>
                          <tr>
                           <td><p class="text-left">
                             <a href="#" class="openP_popper" data-popbox="openPrice">Open</a>
-                            <div  id="openPrice" class="popbox">Open Price Definition.</div>
+                            <div  id="openPrice" class="popbox">the price at which a security first trades upon the opening of an exchange on a given trading day</div>
                           </p></td>
-                          <td><p class="text-right">17.75</p></td>
-                          <td><p class="text-left">52wk Range</p></td>
-                          <td><p class="text-right">17.07-14.95</p></td>
+                          <td><p id = "today_open_price" class="text-right"></p></td>
+                          <td><p class="text-left">
+                            <a href="#" class="closeP_popper" data-popbox="closePrice">Close</a>
+                            <div  id="closePrice" class="popbox">the final price at which a security is traded on a given trading day</div>
+                          </p></td>
+                          <td><p class="text-right" id="today_close_price"></p></td>
                          </tr>
                          <tr>
                           <td><p class="text-left">
                             <a href="#" class="volumeP_popper" data-popbox="volumeP">Volume</a>
                             <div id="volumeP" class="popbox">the number of shares of a given stock that changed hands during a given day</div>
                           </p></td>
-                          <td><p class="text-right">0</p></td>
+                          <td><p class="text-right" id="today_volume"></p></td>
                           <td><p class="text-left">
                             <a href="#" class="avgVolumeP_popper" data-popbox="avgVolumeP">Avg Vol.(3m)</a>
                             <div id="avgVolumeP" class="popbox">the average of volume in a given day</div></p></td>
@@ -70,8 +85,9 @@
                       </div>
                     </form>
                     </div>
+
                 </div>
-                <div class="col-lg-8 col-md-12 chart">
+                <div class="col-lg-8 col-md-12 chart"><p>Stock Price Display</p>
                 </div>
               </div>
 {% endblock %}
@@ -81,9 +97,11 @@
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="static/assets/js/jquery.ajax-cross-origin.min.js"></script> -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/assets/js/crosshairs.js">></script>
     <script type="text/javascript" src="static/assets/js/candlestickSeries.js"></script>
     <script type="text/javascript" src="static/assets/js/displayInfo.js"></script>
     <script type="text/javascript" src="static/assets/js/tracker.js"></script>
+    <script type="text/javascript" src="static/assets/js/crosshairs.js"></script>
     <script type="text/javascript" src="static/assets/js/annotation.js"></script>
     <script type="text/javascript" src="static/assets/js/stockSeries.js"></script>
 

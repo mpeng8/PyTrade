@@ -21,6 +21,52 @@ $('.popper').click(function (e) {
     $(this).toggleClass("show");
 });
 
+
+$('.highP_popper').hover(function (e) {
+
+    var target = '#' + ($(this).attr('data-popbox'));
+    $(target).show();
+    moveLeft = $(this).outerWidth();
+    moveDown = ($(target).outerHeight() / 2);
+}, function () {
+    var target = '#' + ($(this).attr('data-popbox'));
+    if (!($(".highP_popper").hasClass("show"))) {
+        $(target).hide();
+    }
+});
+
+
+$('.highP_popper').click(function (e) {
+    var target = '#' + ($(this).attr('data-popbox'));
+    if (!($(this).hasClass("show"))) {
+        $(target).show();
+    }
+    $(this).toggleClass("show");
+});
+
+$('.lowP_popper').hover(function (e) {
+
+    var target = '#' + ($(this).attr('data-popbox'));
+    $(target).show();
+    moveLeft = $(this).outerWidth();
+    moveDown = ($(target).outerHeight() / 2);
+}, function () {
+    var target = '#' + ($(this).attr('data-popbox'));
+    if (!($(".lowP_popper").hasClass("show"))) {
+        $(target).hide();
+    }
+});
+
+
+$('.lowP_popper').click(function (e) {
+    var target = '#' + ($(this).attr('data-popbox'));
+    if (!($(this).hasClass("show"))) {
+        $(target).show();
+    }
+    $(this).toggleClass("show");
+});
+
+
 $('.openP_popper').hover(function (e) {
 
     var target = '#' + ($(this).attr('data-popbox'));
@@ -42,6 +88,32 @@ $('.openP_popper').click(function (e) {
     }
     $(this).toggleClass("show");
 });
+
+$('.closeP_popper').hover(function (e) {
+
+    var target = '#' + ($(this).attr('data-popbox'));
+    $(target).show();
+    moveLeft = $(this).outerWidth();
+    moveDown = ($(target).outerHeight() / 2);
+}, function () {
+    var target = '#' + ($(this).attr('data-popbox'));
+    if (!($(".closeP_popper").hasClass("show"))) {
+        $(target).hide();
+    }
+});
+
+
+$('.closeP_popper').click(function (e) {
+    var target = '#' + ($(this).attr('data-popbox'));
+    if (!($(this).hasClass("show"))) {
+        $(target).show();
+    }
+    $(this).toggleClass("show");
+});
+
+
+
+
 
 
 $('.volumeP_popper').hover(function (e) {

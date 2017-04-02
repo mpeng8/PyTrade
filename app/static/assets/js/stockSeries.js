@@ -4,6 +4,7 @@ function stock(data){
   this.date = new Date(data[1]);
   this.high = data[3];
   this.low =data[4];
+  this.volume=data[6];
 }
 
 function createCORSRequest(method, url) {
@@ -62,8 +63,8 @@ xhr.onload = function() {
  var stockData = [];
  for (var i = 0; i < length; i++) {
    stockData.push(new stock(stockCodes.datatable.data[i]));
-     //console.log(stockData[i]);
  }
+
  //d3 margin convention
  var margin = {top: 20, right: 20, bottom: 30, left: 35},
      width = 770 - margin.left - margin.right,
@@ -109,22 +110,26 @@ xhr.onload = function() {
 
  plotArea.attr('clip-path', 'url(#plotAreaClip)');
 
-  var annotationValue = 65;
+
    // Set scale domains
  var minN = d3.min(stockData, function (d) { return d.date; }).getTime(),
      maxN = d3.max(stockData, function (d) { return d.date; }).getTime();
- var minDate = new Date(minN - 8.64e7),
-     maxDate = new Date(maxN + 8.64e7);
+ var minDate = new Date(minN),
+     maxDate = new Date(maxN);
  var yMin = d3.min(stockData, function (d) { return d.low; }),
      yMax = d3.max(stockData, function (d) { return d.high; });
-     yMin = (yMin < annotationValue) ? yMin : annotationValue;
-     yMax = (yMax > annotationValue) ? yMax : annotationValue;
 yScale.domain([yMin, yMax]).nice();
 
 // There are 8.64e7 milliseconds in a day.
+document.getElementById("today_open_price").innerText=stockData[length-1].open;
+document.getElementById("today_high_price").innerText=stockData[length-1].high;
+document.getElementById("today_close_price").innerText=stockData[length-1].close;
+document.getElementById("today_low_price").innerText=stockData[length-1].low;
+document.getElementById("today_volume").innerText=stockData[length-1].volume;
+
  xScale.domain([
      new Date(maxDate.getTime() - (8.64e7 * 31.5)),
-     new Date(maxDate.getTime() + 8.64e7)
+     new Date(maxDate.getTime())
  ]);
 
  yScale.domain(
@@ -144,7 +149,7 @@ yScale.domain([yMin, yMax]).nice();
  // Draw axes
  g.append('g')
  .attr('class', 'x axis')
- .attr('transform', 'translate(0,' + height + ')')
+ .attr('transform', 'translate('+margin.left +', '+ height + ')')
  .call(xAxis);
 
  g.append('g')
@@ -156,9 +161,10 @@ yScale.domain([yMin, yMax]).nice();
  // Draw the series.
  var dataSeries = plotArea.append('g')
  .attr('class', 'series')
- .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+ .attr('transform', 'translate(0'  + ',' + margin.top + ')')
  .datum(stockData)
- .call(series);
+ .call(series)
+
 
 
  var navWidth = width,
@@ -206,8 +212,21 @@ yScale.domain([yMin, yMax]).nice();
    .attr('class', 'line')
    .attr('d', navLine(stockData));
 
+   var trackers = tracker()
+           .xScale(xScale)
+           .yScale(yScale)
+           .yValue('close')
+           .movingAverage(5)
+           .css('tracker-close-avg');
+
+  var movingAverage = plotArea.append('g')
+          .attr('class', 'trackers')
+          .datum(stockData)
+          .call(trackers);
+
  function redrawChart() {
      dataSeries.call(series);
+     movingAverage.call(trackers);
      svg.select('.x.axis').call(xAxis);
  }
 
@@ -231,7 +250,7 @@ yScale.domain([yMin, yMax]).nice();
 
 
  var viewport = d3.svg.brush()
- .x(navXScale)
+     .x(navXScale)
  .on("brush", function () {
      xScale.domain(viewport.empty() ? navXScale.domain() : viewport.extent());
      redrawChart();
@@ -256,6 +275,7 @@ yScale.domain([yMin, yMax]).nice();
      .y0(0)
      .y1(height);
 
+
  plotArea.append('path')
      .attr('class', 'overlay')
      .attr('d', overlay(stockData))
@@ -271,7 +291,7 @@ yScale.domain([yMin, yMax]).nice();
      .selectAll("rect")
      .attr("height", navHeight);
 
- var daysShown = 14;
+ var daysShown = 12;
 
  xScale.domain([
      stockData[stockData.length - daysShown - 1].date,
@@ -283,17 +303,24 @@ yScale.domain([yMin, yMax]).nice();
  updateZoomFromChart();
 
 
- var trackers = tracker()
-         .xScale(xScale)
-         .yScale(yScale)
-         .yValue('close')
-         .movingAverage(5)
-         .css('tracker-close-avg');
+var crosshair = crosshairs()
+                 .target(plotArea)
+                 .series(stockData)
+                 .xScale(xScale)
+                 .yScale(yScale);
 
-plotArea.append('g')
-        .attr('class', 'trackers')
-        .datum(stockData)
-        .call(trackers);
+plotArea.append('path')
+                 .attr('class', 'overlay')
+                 .attr('d', overlay(stockData))
+                 .call(crosshair);
+
+
+
+
+
+
+
+
 
 
 };

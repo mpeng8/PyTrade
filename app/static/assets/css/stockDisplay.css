@@ -43,3 +43,17 @@
     stroke-width: 1;
     stroke-dasharray: 3, 3;
 }
+
+.chart line.crosshairs {
+    fill: none;
+    stroke: blue;
+    stroke-width: 1;
+    stroke-opacity: 0.5;
+}
+
+.chart circle.crosshairs {
+    fill: none;
+    stroke: blue;
+    stroke-width: 1;
+    stroke-opacity: 0.5;
+}
