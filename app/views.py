@@ -71,6 +71,7 @@ def adminLogIn():
 def logout():
     session['logged_in'] = False
     session['username'] = None
+    session.clear();
     return index()
 
 @app.route('/signup', methods = ['GET','POST'])
@@ -159,9 +160,10 @@ def stockinfo():
         return redirect(url_for('timeout'))
 
     post = "empty";
+    stockIDone = "";
     if(request.method == "POST"):
         post = request.form["stockName"];
-        stockID = post.split(':', 1 )[0];
+        stockIDone = post.split(':', 1 )[0];
         post = post.split(':',1)[1];
 
         session['stockIDone']=stockIDone;
@@ -169,6 +171,7 @@ def stockinfo():
     post=session['stockName'];
     stockIDone=session['stockIDone'];
     return render_template('stockinfo.html', stockName=post, stockID = stockIDone)
+
 
 @app.route('/searchStock', methods = ['GET', 'POST'])
 def searchStock():
@@ -238,3 +241,23 @@ def lookup_profile():
 @app.errorhandler(404)
 def not_found(e):
     return render_template("404.html")
+
+@app.route("/editTime",methods=['GET','POST'])
+def editTime():
+    userOldDate= request.form['startDate'];
+    session['startDate']=userOldDate;
+    session['endDate']=request.form['endDate'];
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'])
+
+@app.route("/getTime",methods=['GET'])
+def getTime():
+    data={}
+    if 'startDate' in session:
+        data['startDate']=session['startDate'];
+    else:
+        data['startDate']=""
+    if 'endDate' in session:
+        data['endDate']=session['endDate']
+    else:
+        data['endDate']=""
+    return jsonify(data=data)
