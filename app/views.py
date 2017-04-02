@@ -152,7 +152,12 @@ def stocklist():
     if not session.get('username'):
         return redirect(url_for('timeout'))
 
-    return render_template('stocklist.html')
+    q_user = User.query.filter(User.username == session['username']).first()
+
+    fav_stocks = q_user.stocks.all()
+    numstocks = len(fav_stocks)
+
+    return render_template('stocklist.html', stocks = fav_stocks, numstocks = numstocks)
 
 @app.route("/stockinfo", methods = ['GET', 'POST'])
 def stockinfo():
@@ -170,21 +175,61 @@ def stockinfo():
         session['stockName']=post;
     post=session['stockName'];
     stockIDone=session['stockIDone'];
-    return render_template('stockinfo.html', stockName=post, stockID = stockIDone)
-
+    q_user = User.query.filter(User.username == session['username']).first()
+    cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
+    return render_template('stockinfo.html', stockName=post, stockID = stockIDone, me = q_user, cur_stock = cur_stock)
 
 @app.route('/searchStock', methods = ['GET', 'POST'])
 def searchStock():
     if not session.get('username'):
         return redirect(url_for('timeout'))
 
-    post = request.form["stockName"];
-    if (post == None or post == "") :
-        return None
-    stockID = post.split(':', 1 )[0];
-    post = post.split(':',1)[1];
-    return render_template('stockinfo.html', stockName=post, stockID = stockID)
+    post = "empty";
+    stockIDone = "";
+    if(request.method == "POST"):
+        post = request.form["stockName"];
+        stockIDone = post.split(':', 1 )[0];
+        post = post.split(':',1)[1];
+        session['stockIDone']=stockIDone;
+        session['stockName']=post;
+    post=session['stockName'];
+    stockIDone=session['stockIDone'];
+    cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
+    if cur_stock == None:
+        cur_stock = Stock(stockIDone, post)
+        print "new stock discovered"
+        try :
+            db.session.add(cur_stock)
+            db.session.commit()
+            db.session.close()
+        except:
+            error = 'Invalid stock'
+            db.session.rollback()
+            return redirect(url_for('stocklist'))
+    cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
+    q_user = User.query.filter(User.username == session['username']).first()
+    return render_template('stockinfo.html', stockName=post, stockID = stockIDone, me = q_user, cur_stock = cur_stock)
 
+@app.route("/addstock/<stkid>")
+def addstock(stkid):
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+    q_user = User.query.filter(User.username == session['username']).first()
+    stock = Stock.query.filter(Stock.stkid == stkid).first()
+    a1 = q_user.interest_in(stock)
+    db.session.commit()
+    return redirect(url_for('stocklist'))
+
+@app.route("/deletestock/<stkid>")
+def deletestock(stkid):
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+
+    q_user = User.query.filter(User.username == session['username']).first()
+    stock = Stock.query.filter(Stock.stkid == stkid).first()
+    q_user.delete_stk(stock)
+    db.session.commit()
+    return redirect(url_for('stocklist'))
 #############################################################################################################
 
 #Social network functions

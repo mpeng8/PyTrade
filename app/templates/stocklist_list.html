@@ -1,0 +1,24 @@
+<table class="table table-hover table-bordered">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Stock Name:Company name</th>
+        <th></th>
+      </tr>
+    </thead>  
+    <tbody>
+    {% for s in stocks%}
+      <tr>
+        <td><form action = "/stockinfo" method = "POST"> <input name = "stockName" role="button" class="btn btn-link" type="submit" value = "{{s.stkid}} : {{s.company}}"></input></form></td>
+        <td><a role="button" href="{{url_for('deletestock', stkid = s.stkid)}}" class="btn btn-default">Delete</a></td>
+      </tr>
+    {% endfor %}
+      <tr>
+        <div class= "form-group">
+          <form action = "/searchStock" method = "POST">
+            <td><input onkeyPress = "myAutocomplete()" type="text" class="form-control" id="stockSearch" name = "stockName" placeholder="Please type in stock name or company name to search for the stock"></td>
+            <td><input type="submit" class="btn btn-default" value= "Search"></input></td>
+          </form>
+        </div>
+      </tr>
+    </tbody>
+  </table>

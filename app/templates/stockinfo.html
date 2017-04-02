@@ -19,6 +19,11 @@
                 </div>
                 <div class="col-lg-3">
                   <button type="button" class="btn btn-default">Predict</button>
+                  {% if not me.stock_in_list(cur_stock)%}
+                    <a role ="button" href="{{ url_for('addstock', stkid = stockID)}}" class="btn btn-default"> add stock</a>
+                  {% else%}
+                    <a role ="button" class="btn btn-default disabled"> add stock</a>
+                  {% endif%}
                 </div>
                 <div class="col-lg-3" id="popup" style="background:#ccc;display: none;border:1px solid #000; width: 290px">
                   <div class = "row" >
