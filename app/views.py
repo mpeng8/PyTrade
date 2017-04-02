@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, session, abort, request, flash, g
+from flask import render_template, url_for, redirect, session, abort, request, flash,jsonify
 from app import app
 import re
 from app import db
@@ -164,8 +164,11 @@ def stockinfo():
         post = request.form["stockName"];
         stockID = post.split(':', 1 )[0];
         post = post.split(':',1)[1];
-
-    return render_template('stockinfo.html', stockName=post, stockID = stockID)
+        session['stockIDone']=stockIDone;
+        session['stockName']=post;
+    post=session['stockName'];
+    stockIDone=session['stockIDone'];
+    return render_template('stockinfo.html', stockName=post, stockID = stockIDone)
 #############################################################################################################
 
 #Social network functions
