@@ -6,8 +6,11 @@ K nearest neighbout Learner
 '''
 
 class KNN:
-    def __init__(self):
-        self.learner = KNeighborsClassifier()
+    def __init__(self, kwargs=None):
+        if kwargs==None:
+            self.learner = KNeighborsClassifier()
+        else:
+            self.learner = KNeighborsClassifier(**kwargs)
 
     def train(self,X,y):
         self.learner.fit(X,y)

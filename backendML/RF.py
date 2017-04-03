@@ -6,9 +6,12 @@ Random Forest Learner
 
 class RandomForest:
 
-    def __init__(self, treenum=10):
+    def __init__(self, kwargs=None):
 
-        self.learner = RandomForestClassifier(n_estimators=10)
+        if kwargs== None:
+            self.learner = RandomForestClassifier()
+        else:
+            self.learner = RandomForestClassifier(**kwargs)
 
 
     def train(self,X,y):

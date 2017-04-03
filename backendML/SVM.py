@@ -7,8 +7,11 @@ Support Vector Machine Learner
 
 class SVM:
 
-    def __init__(self):
-        self.learner = SVC()
+    def __init__(self, kwargs=None):
+        if kwargs==None:
+            self.learner = SVC()
+        else:
+            self.learner = SVC(**kwargs)
 
     def train(self,X,y):
         self.learner.fit(X,y)

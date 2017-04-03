@@ -32,11 +32,7 @@ class QLearner(object):
         
 
     def querysetstate(self, s):
-        """
-        @summary: Update the state without updating the Q-table
-        @param s: The new state
-        @returns: The selected action
-        """
+
         self.s = s
         action = np.argmax(self.Q[s])
         self.a = action
@@ -44,12 +40,7 @@ class QLearner(object):
         return action
 
     def query(self,s_prime,r):
-        """
-        @summary: Update the Q table and return an action
-        @param s_prime: The new state
-        @param r: The ne state
-        @returns: The selected action
-        """
+
         action_prime = np.argmax(self.Q[s_prime])
         self.Q[self.s, self.a] = (1-self.alpha)*self.Q[self.s,self.a]+self.alpha*(r+self.Q[s_prime,action_prime])
         if (self.dyna != 0):

@@ -1,8 +1,11 @@
 from sklearn.neural_network import MLPClassifier
 
 class NN:
-    def __init__(self):
-        self.learner = MLPClassifier()
+    def __init__(self, kwargs=None):
+        if kwargs == None:
+            self.learner = MLPClassifier()
+        else:
+            self.learner = MLPClassifier(**kwargs)
 
     def train(self,X,y):
         self.learner.fit(X,y)

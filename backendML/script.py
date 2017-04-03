@@ -1,9 +1,4 @@
-'''
-for demo only
 
-run crossvalidation for various setting to generate report
-
-'''
 
 symb='AAPL'
 x = [3,5,7,10,15]

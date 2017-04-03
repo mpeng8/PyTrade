@@ -3,23 +3,6 @@ import numpy as np
 import util
 from talib.abstract import *
 
-'''
-sd, ed, symb from frontend
-
-format
-
-symb 
-
-pred date = x
-
-sd = '2001-1-1'
-ed = '2010-1-1'
-
-#
-Random forest indicator sel = [K, RSI,WILLR,MACD,OBV,PROC]
-
-
-'''
 
 class Unit:
 
@@ -32,19 +15,12 @@ class Unit:
         self.df = df
         self.index = df.index
 
-    '''
-    preprocessing. Exponentially smoothing data
-    '''
+
     def expsmoothing(self,df, alpha = 1):
         df = df*alpha + df.shift(1)*(1-alpha)
         return df
 
-    '''
-    For Random Forest only
-    preprocessing data 
-    return numpy matrix
-    mode=1=train; else=test
-    '''
+ 
     def preprocessRF(self,mode=1):
         dfx = self.expsmoothing(self.df)
         X = self.addXRF(dfx)
@@ -96,38 +72,23 @@ class Unit:
         return np.sign(temp)
 
 
-    '''
-    normalizing log return of date length of x=predlen
-
-    return panda dataframe
-    '''
+  
     def logreturn(self,df):
         price = df['close']
         logr = (np.log(price/price.shift(self.predlen)))/self.predlen
         return logr
 
-    '''
-    threshold return
 
-    return panda dataframe
-    '''
     def labelreturn(self):
         price = self.df['close']
         dr = np.sign(price-price.shift(self.predlen))
         return dr
 
-        
-    '''
-    convert df to np matrix
-    '''
     def convert(self):
         df2 = self.df.as_matrix(columns=self.colsel)
         return df2
 
 
-    '''
-    convert np matrix to df
-    '''
     def convert2(self,arr):
         df3 = pd.DataFrame(data=arr, index=self.index[34:])
         return df3
