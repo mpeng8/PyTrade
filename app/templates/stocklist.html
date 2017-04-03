@@ -12,40 +12,62 @@
             </div>
               <div class="row">
                 <div class="col-lg-6 col-md-9">
-                  <h4>Total: 2 stocks following</h4>
+                  <h4>Total: {{numstocks}} stocks following</h4>
                 </div>
               </div>
               <!-- page start-->
               <div class="row">
                   <div class="col-lg-9 col-md-12">
                     <div class="table-responsive">
-                      <table class="table table-hover table-bordered">
-                        <thead class="thead-inverse">
-                          <tr>
-                            <th>Stock Name:Company name</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td><form action = "/stockinfo" method = "POST"> <input name = "stockName"role="button" class="btn btn-link" type="submit" value = "MSFT: Microsoft Corporation"></input></form></td>
-                            <td><button type="button" class="btn btn-default">Delete</button></td>
-                          </tr>
-                          <tr>
-                            <td><form action = "/stockinfo" method = "POST"> <input name = "stockName"role="button" class="btn btn-link" type="submit" value = "TSX_GMO_TO: General Electric Company"></input></form></td>
-                            <td><button type="button" class="btn btn-default">Delete</button></td>
-                          </tr>
-                          <tr>
-                            <td><input type="text" class="form-control" id="stockSearch" placeholder="Please type in stock name or company name to search for the stock"></td>
-                            <td><button type="button" class="btn btn-default">Search</button></td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      {% include 'stocklist_list.html'%}
                     </div><!--table-->
                   </div><!--col-->
               </div><!--row-->
 {% endblock %}
 {% block script %}
+
+  <script type="text/javascript">
+    function myAutocomplete(){
+        var input = document.getElementById("stockSearch").value;
+          $("#stockSearch").autocomplete({
+          source: function( request, response )
+          {
+              $.ajax({
+                  url: "http://dev.markitondemand.com/api/v2/Lookup/jsonp",
+                  dataType: "jsonp",
+                  data: {
+                    input: request.term
+                  },
+                  success: function( data ) {
+                      response( $.map( data, function( item ) {
+                          console.log(item)
+                          return {
+                              label:item.Symbol+' - '+item.Name+' ( '+item.Exchange+' )',
+                              value:item.Symbol + ': ' + item.Name 
+                          }
+                      }));
+                  },
+                  error: function(){
+                      console.log("error");
+                      // disableCarousel();
+                      return {
+                        label: 'error: ',
+                        value: 'No such symbol' 
+                      }
+                      //$("#Error").text("Select a valid Entry");
+                  }
+              });
+          },
+          minLength: 1,
+          open: function() {
+              $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+          },
+          close: function() {
+              $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+          }
+        });
+      }
+  </script>
     <!-- javascripts -->
     <!-- <script src="static/assets/js/jquery.js"></script> -->
     <!-- <script src="static/assets/js/stockList.js"></script> -->

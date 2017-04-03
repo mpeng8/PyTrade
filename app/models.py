@@ -31,15 +31,6 @@ class User(db.Model):
                                backref=db.backref('followers', lazy='dynamic'), 
                                lazy='dynamic')
 
-    # constraints not finished
-    # __table_args__ = (
-    #             CheckConstraint(len(password) >= 6, name="check_password_len"),
-    #             CheckConstraint(
-    #                     username ~* '^([A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])$',
-    #                     name="user_valid_username",
-    #             ),
-    #             {})
-
     def __init__(self, username, password, email):
         self.username = username
         self.password = password
@@ -86,25 +77,27 @@ class User(db.Model):
     def is_following(self, user):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
 
-    def insterest_in(self, stock):
-        if not stock_in_list(stock):
+    def interest_in(self, stock):
+        if not self.stock_in_list(stock):
             self.stocks.append(stock)
             return self
 
     def delete_stk(self, stock):
-        if stock_in_list(stock):
-            stocks.remove(stock)
+        if self.stock_in_list(stock):
+            self.stocks.remove(stock)
+            return self
 
     def stock_in_list(self, stock):
-        return self.stocks.filter(stocks.c.stkid == stock.stkid).count() > 0
+        return self.stocks.filter(stock_list_table.c.stk_id == stock.stkid).count() > 0
 
 class Stock(db.Model):
     __tablename__ = 'Stock'
     stkid = db.Column(db.String(64), index=True, primary_key=True, nullable=False)
+    company = db.Column(db.String(64), index=True, primary_key=False, nullable=False)
 
-    def __init__(self, stkid):
+    def __init__(self, stkid, company):
         self.stkid = stkid
-
+        self.company = company
 
     def __repr__(self):
-        return "<Stock(stkid='%s')>" % (self.stkid)
+        return "<Stock(stkid='%s', company ='%s')>" % (self.stkid, self.company)
