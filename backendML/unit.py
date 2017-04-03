@@ -35,7 +35,7 @@ class Unit:
     '''
     preprocessing. Exponentially smoothing data
     '''
-    def expsmoothing(self,df, alpha = 0.618):
+    def expsmoothing(self,df, alpha = 1):
         df = df*alpha + df.shift(1)*(1-alpha)
         return df
 
