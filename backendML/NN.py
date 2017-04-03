@@ -1,5 +1,8 @@
 from sklearn.neural_network import MLPClassifier
 
+'''
+neural net learner
+'''
 class NN:
     def __init__(self, kwargs=None):
         if kwargs == None:

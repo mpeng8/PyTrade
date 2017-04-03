@@ -5,7 +5,7 @@ Support Vector Machine Learner
 
 '''
 
-class SVM:
+class SVM(object):
 
     def __init__(self, kwargs=None):
         if kwargs==None:

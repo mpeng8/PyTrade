@@ -5,6 +5,9 @@ import util as ut
 import numpy as np
 import unit
 
+'''
+Reinforcement Learner 
+'''
 
 class RLearner(object):
 
@@ -13,13 +16,13 @@ class RLearner(object):
         self.verbose = verbose
         ###### config ##########
         self.bucket = 10
-        self.idct = 3 # indicator = [bbv,k, vol,] => 0-999
+        self.idct = 3 
         self.maxiter = 35
         self.miniter = 15
         self.threshold = None
 
 
-    # this method should create a QLearner, and train it for trading
+  
     def addEvidence(self, symbol = 'AAPL', sd='2007-1-1', ed='2008-1-1', sv = 10000): 
 
         self.learner = ql.QLearner()
@@ -284,11 +287,7 @@ class RLearner(object):
         return state
 
 
-    '''
-        call the function when add evidence during training
-        initialize the state threshold grid
-        indicators = ['BBV','k','vol']
-    '''
+
     def addthreshold(self, df, symb):
         temp = np.zeros((self.bucket, self.idct))
 
@@ -316,10 +315,7 @@ class RLearner(object):
         self.thresholds = temp
 
 
-    '''
-        add indicators
-        indicators = ['BBV','k','vol']   
-    '''
+
     def addIndicators(self, df, symb):
         df = self.calc_bbv(df.copy(), symb)
         #df = self.calc_kdj(df.copy(),symb)

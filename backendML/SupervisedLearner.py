@@ -13,10 +13,10 @@ import util
 '''
 Supervised learner wrapper
 
-SVM, KNN, RF
+SVM, KNN, RF, NN
 '''
 
-class SupervisedLearner:
+class SupervisedLearner(object):
 
     def __init__(self, symb, predlen, cat='RL',kwargs=None):
 

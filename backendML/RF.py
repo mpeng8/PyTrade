@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 Random Forest Learner
 '''
 
-class RandomForest:
+class RandomForest(object):
 
     def __init__(self, kwargs=None):
 

@@ -1,5 +1,5 @@
 """
-Q-learner for RLStrateger 
+Q-learner for RLearner
 """
 
 import numpy as np

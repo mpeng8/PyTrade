@@ -2,7 +2,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 '''
-K nearest neighbout Learner
+K nearest neighbour Learner
 '''
 
 class KNN:
