@@ -29,3 +29,17 @@
 
 {% endblock %}
 
+{% block script %}
+    <script>
+
+    $(document).ready(function(){
+      $("#followerlist").dataTable({
+        "searching": false
+      });
+      $("#followeelist").dataTable({
+        "searching": false
+      });
+    });
+    </script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+{% endblock %}
