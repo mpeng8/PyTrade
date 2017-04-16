@@ -195,6 +195,7 @@ def searchStock():
     post=session['stockName'];
     stockIDone=session['stockIDone'];
     cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
+
     if cur_stock == None:
         cur_stock = Stock(stockIDone, post)
         print "new stock discovered"
@@ -292,7 +293,9 @@ def editTime():
     userOldDate= request.form['startDate'];
     session['startDate']=userOldDate;
     session['endDate']=request.form['endDate'];
-    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'])
+    me = User.query.filter(User.username == session['username']).first()
+    cur_stock = Stock.query.filter(Stock.stkid == session['stockIDone']).first()
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = me, cur_stock = cur_stock)
 
 @app.route("/getTime",methods=['GET'])
 def getTime():
