@@ -129,6 +129,23 @@
 {% block script %}
 
     <script>
+    function createCORSRequest(method, url) {
+      var xhr = new XMLHttpRequest();
+      if ("withCredentials" in xhr) {
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        xhr.open(method, url, true);
+      } else if (typeof XDomainRequest != "undefined") {
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+      } else {
+        // Otherwise, CORS is not supported by the browser.
+        xhr = null;
+      }
+      return xhr;
+    }
 
     $("#predBtn").click(function() {
       $("#predTable").toggle();
@@ -148,6 +165,22 @@
 
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("userInputEndDate").setAttribute("max", today);
+
+    stockID_info = document.getElementById("stockID_info").innerText;
+    url = "https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?ticker="+stockID_info+"&qopts.columns=date&api_key=sXBsPYtsefUf_qaFxNDK";
+
+    var xhr = createCORSRequest('GET', url);
+    xhr.onload = function() {
+     var responseText = xhr.responseText;
+     var stockCodes = JSON.parse(responseText);
+     //console.log(stockCodes);
+     //var length = stockCodes.datatable.data.length;
+     var oldestStartDate = stockCodes.datatable.data[0][0];
+     console.log(oldestStartDate);
+     document.getElementById("startDate").setAttribute("min", oldestStartDate);
+    }
+    xhr.send();
+
     </script>
     <!-- javascripts -->
     <script src="static/assets/js/jquery.js"></script>
