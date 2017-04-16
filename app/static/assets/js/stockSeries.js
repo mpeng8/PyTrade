@@ -6,6 +6,12 @@ function stock(data){
   this.low =data[4];
   this.volume=data[6];
 }
+function validateDate() {
+  startDate = document.getElementById("startDate").value;
+  endDate = document.getElementById("userInputEndDate").value;
+  console.log(endDate);
+  return false;
+}
 
 function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();

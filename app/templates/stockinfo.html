@@ -80,11 +80,11 @@
                     </div>
                     <div  id="pop1" class="popbox">You can select timeframe for stock display.</div>
                     <div class="col-lg-6 col-md-9">
-                    <form action="/editTime" method = "POST">
+                    <form action="/editTime" method = "POST" onsubmit="validateDate()">
                       <div class="form-group">
-                        Start Date: <input type="date" class="form-control"  name="startDate" id="startDate" Placeholder="start Date"></input>
+                        Start Date: <input type="date" required class="form-control"  name="startDate" id="startDate" Placeholder="start Date"></input>
                         End Date:
-                        <input type="date" class="form-control" id = "userInputEndDate" name = "endDate" id="endDate" max = '2000-13-13' Placeholder="end Date"></input>
+                        <input type="date" class="form-control" required id = "userInputEndDate" name = "endDate" id="endDate" max = '2000-13-13' Placeholder="end Date"></input>
                         <input type="submit" class="btn btn-default" value = "submit date"></input>
                       </div>
                     </form>
