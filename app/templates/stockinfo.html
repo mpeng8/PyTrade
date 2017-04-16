@@ -165,6 +165,7 @@
 
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("userInputEndDate").setAttribute("max", today);
+    document.getElementById("startDate").setAttribute("max", today);
 
     stockID_info = document.getElementById("stockID_info").innerText;
     url = "https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?ticker="+stockID_info+"&qopts.columns=date&api_key=sXBsPYtsefUf_qaFxNDK";
@@ -173,11 +174,10 @@
     xhr.onload = function() {
      var responseText = xhr.responseText;
      var stockCodes = JSON.parse(responseText);
-     //console.log(stockCodes);
-     //var length = stockCodes.datatable.data.length;
      var oldestStartDate = stockCodes.datatable.data[0][0];
      console.log(oldestStartDate);
      document.getElementById("startDate").setAttribute("min", oldestStartDate);
+     document.getElementById("userInputEndDate").setAttribute("min", oldestStartDate);
     }
     xhr.send();
 
