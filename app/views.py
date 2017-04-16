@@ -1,11 +1,14 @@
 from flask import render_template, url_for, redirect, session, abort, request, flash, jsonify
-from app import app
+from app import app, db
 import re
 from app import db
 from app.models import User, Stock
 import pandas as pd
 import json
-
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'backendML'))
+import mlClient
 
 @app.route('/')
 
@@ -177,7 +180,7 @@ def stockinfo():
     stockIDone=session['stockIDone'];
     q_user = User.query.filter(User.username == session['username']).first()
     cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
-    return render_template('stockinfo.html', stockName=post, stockID = stockIDone, me = q_user, cur_stock = cur_stock)
+    return render_template('stockinfo.html', stockName=post, stockID = stockIDone, me = q_user, cur_stock = cur_stock, result = '')
 
 @app.route('/searchStock', methods = ['GET', 'POST'])
 def searchStock():
@@ -209,7 +212,7 @@ def searchStock():
             return redirect(url_for('stocklist'))
     cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
     q_user = User.query.filter(User.username == session['username']).first()
-    return render_template('stockinfo.html', stockName=post, stockID = stockIDone, me = q_user, cur_stock = cur_stock)
+    return render_template('stockinfo.html', stockName=post, stockID = stockIDone, me = q_user, cur_stock = cur_stock, result = '')
 
 @app.route("/addstock/<stkid>")
 def addstock(stkid):
@@ -296,7 +299,7 @@ def editTime():
     stockIDone=session['stockIDone'];
     q_user = User.query.filter(User.username == session['username']).first()
     cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
-    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock)
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock,result = '')
 
 @app.route("/getTime",methods=['GET'])
 def getTime():
@@ -310,3 +313,11 @@ def getTime():
     else:
         data['endDate']=""
     return jsonify(data=data)
+
+@app.route("/predictStocks")
+def predictStocks():
+    result = mlClient.predictStock('AAPL');
+    stockIDone=session['stockIDone'];
+    q_user = User.query.filter(User.username == session['username']).first()
+    cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock, result = result)

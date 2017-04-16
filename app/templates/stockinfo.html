@@ -18,7 +18,9 @@
                   <h3 id = "stockID_info"> {{ stockID }}</h3>{{ stockName }}
                 </div>
                 <div class="col-lg-3">
-                  <button type="button" class="btn btn-default" id="predBtn">Predict</button>
+                  <form action="/predictStocks">
+                  <input type="submit" class="btn btn-default"></input>
+                </form>
                   {% if not me.stock_in_list(cur_stock)%}
                     <a role ="button" href="{{ url_for('addstock', stkid = stockID)}}" class="btn btn-default"> add stock</a>
                   {% else%}
@@ -95,9 +97,11 @@
                 </div>
               </div>
               <div class="row" id="predTable" style="display:none">
+                {{result}}
                 {% if not session['startDate']%}
                 <div class="col-lg-4 col-md-5 col-sm-6">
-                  <h1>hi, this is the place for default prediction</h1>
+
+                  <h1>{{result}}</h1>
                 </div>
                 {% else %}
                 <div class="col-lg-4 col-md-5 col-sm-6">
@@ -118,87 +122,6 @@
                           <td><h5>This is the table</h5></td>
                           <td><h5>for select time frame prediction</h5></td>
                         </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-                        <tr>
-                          <td><h5>This is the table</h5></td>
-                          <td><h5>for select time frame prediction</h5></td>
-                        </tr>
-
                       </tbody>
 
                     </table>
@@ -222,6 +145,7 @@
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="static/assets/js/jquery.ajax-cross-origin.min.js"></script> -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/assets/js/stockPrediction.js">></script>
     <script type="text/javascript" src="static/assets/js/crosshairs.js">></script>
     <script type="text/javascript" src="static/assets/js/candlestickSeries.js"></script>
     <script type="text/javascript" src="static/assets/js/displayInfo.js"></script>
