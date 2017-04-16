@@ -17,6 +17,7 @@
                 <div class="col-lg-6 col-md-9">
                   <h3 id = "stockID_info"> {{ stockID }}</h3>{{ stockName }}
                 </div>
+                <div class="col-lg-3" >
                 <button onclick="predictStockJS()" class="btn btn-default" id="predBtn">Prediction</button>
                   {% if not me.stock_in_list(cur_stock)%}
                     <a role ="button" href="{{ url_for('addstock', stkid = stockID)}}" class="btn btn-default"> add stock</a>
@@ -26,8 +27,10 @@
                 </div>
                 <div class="col-lg-3" id="popup" style="background:#ccc;display: none;border:1px solid #000; width: 290px">
                   <div class = "row" >
-                    <div><p id="select_high_price"></p>
-                    <p id="select_open_price"></p></div>
+                    <div>
+                      <p id="select_high_price"></p>
+                      <p id="select_open_price"></p>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -50,7 +50,7 @@
             <li><a href="#about">What we offer</a></li>
             <li><a href="#news">Model</a></li>
             <li><a href="#history">Recommendation</a></li>
-            <li><a href="#contact">Get in Touch!</a></li> 
+            <li><a href="#contact">Get in Touch!</a></li>
         </ul>
       </nav>
 
@@ -85,7 +85,7 @@
   			{% if session['logged_in'] %}
 			<p>You're logged in already</p>
 			{% else %}
-			<form action = "/aftersignup" method = "POST" class="login-form">  
+			<form action = "/aftersignup" method = "POST" class="login-form">
         		<div class="login-wrap">
            		    <p class="login-img"><i class="icon_lock_alt"></i></p>
             		    <div class="input-group">
@@ -111,7 +111,7 @@
 			</div>
       			</form>
 			{% endif %}
-			
+
 			{% endblock %}
                     </div>
                 </div>
@@ -277,4 +277,3 @@
         <script src="static/assets/js/odometer.js"></script>
     </body>
 </html>
-
