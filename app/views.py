@@ -183,7 +183,7 @@ def stockinfo():
 def searchStock():
     if not session.get('username'):
         return redirect(url_for('timeout'))
-
+    print "alsdkjfkajsddfkj"
     post = "empty";
     stockIDone = "";
     if(request.method == "POST"):
@@ -293,9 +293,10 @@ def editTime():
     userOldDate= request.form['startDate'];
     session['startDate']=userOldDate;
     session['endDate']=request.form['endDate'];
-    me = User.query.filter(User.username == session['username']).first()
-    cur_stock = Stock.query.filter(Stock.stkid == session['stockIDone']).first()
-    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = me, cur_stock = cur_stock)
+    stockIDone=session['stockIDone'];
+    q_user = User.query.filter(User.username == session['username']).first()
+    cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock)
 
 @app.route("/getTime",methods=['GET'])
 def getTime():

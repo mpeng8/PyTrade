@@ -18,7 +18,7 @@
                   <h3 id = "stockID_info"> {{ stockID }}</h3>{{ stockName }}
                 </div>
                 <div class="col-lg-3">
-                  <button type="button" class="btn btn-default">Predict</button>
+                  <button type="button" class="btn btn-default" id="predBtn">Predict</button>
                   {% if not me.stock_in_list(cur_stock)%}
                     <a role ="button" href="{{ url_for('addstock', stkid = stockID)}}" class="btn btn-default"> add stock</a>
                   {% else%}
@@ -75,7 +75,7 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>
+                  </div> <!--table responsive-->
                     <div>
                       <p>Timeline Selector <img src="static/images/questionIcon.png" class="popper" data-popbox="pop1" style="width: 5%; height: 5%"></p>
                     </div>
@@ -90,15 +90,135 @@
                       </div>
                     </form>
                     </div>
-
-                </div>
+                    </div>
                 <div class="col-lg-8 col-md-12 chart"><p>Stock Price Display</p>
                 </div>
               </div>
+              <div class="row" id="predTable" style="display:none">
+                {% if not session['startDate']%}
+                <div class="col-lg-4 col-md-5 col-sm-6">
+                  <h1>hi, this is the place for default prediction</h1>
+                </div>
+                {% else %}
+                <div class="col-lg-4 col-md-5 col-sm-6">
+                </div>
+                <div class="col-lg-6 col-md-9 groove" style="padding: 50px 30px 50px 80px;">
+                  <div class="table-responsive">
+                  <h1>Prediction from {{session['startDate']}} to {{session['endDate']}}</h1>
+                    <table class="display" id="example" cellspacing="0" width="100%">
+                      <thead>
+                          <tr>
+                              <th>Date</th>
+                              <th>Suggestion</th>
+                          </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>This is the table</h5></td>
+                          <td><h5>for select time frame prediction</h5></td>
+                        </tr>
+
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+                {% endif%}
+              </div>
 {% endblock %}
 {% block script %}
+
+    <script>
+
+    $("#predBtn").click(function() {
+      $("#predTable").toggle();
+      $("#example").dataTable();
+    });
+    </script>
     <!-- javascripts -->
     <script src="static/assets/js/jquery.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="static/assets/js/jquery.ajax-cross-origin.min.js"></script> -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
