@@ -313,16 +313,6 @@ plotArea.append('path')
                  .attr('class', 'overlay')
                  .attr('d', overlay(stockData))
                  .call(crosshair);
-
-
-
-
-
-
-
-
-
-
 };
 
 xhr.onerror = function() {

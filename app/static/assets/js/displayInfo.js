@@ -102,7 +102,6 @@ $('.closeP_popper').hover(function (e) {
     }
 });
 
-
 $('.closeP_popper').click(function (e) {
     var target = '#' + ($(this).attr('data-popbox'));
     if (!($(this).hasClass("show"))) {
@@ -110,11 +109,6 @@ $('.closeP_popper').click(function (e) {
     }
     $(this).toggleClass("show");
 });
-
-
-
-
-
 
 $('.volumeP_popper').hover(function (e) {
     var target = '#' + ($(this).attr('data-popbox'));

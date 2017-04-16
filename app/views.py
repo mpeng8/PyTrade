@@ -1,4 +1,5 @@
 from flask import render_template, url_for, redirect, session, abort, request, flash, jsonify
+import requests
 from app import app, db
 import re
 from app import db
@@ -314,10 +315,7 @@ def getTime():
         data['endDate']=""
     return jsonify(data=data)
 
-@app.route("/predictStocks")
+@app.route("/predictStocks", methods=['GET','POST'])
 def predictStocks():
     result = mlClient.predictStock('AAPL');
-    stockIDone=session['stockIDone'];
-    q_user = User.query.filter(User.username == session['username']).first()
-    cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
-    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock, result = result)
+    return jsonify(data = result)
