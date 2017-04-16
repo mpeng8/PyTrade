@@ -88,6 +88,9 @@
                         <input type="submit" class="btn btn-default" value = "submit date"></input>
                       </div>
                     </form>
+                    {% if error %}
+                        <p class=error style="color:red;font-weight:900;"><strong>Error:</strong> {{ error }}</p>
+                    {% endif %}
                     </div>
                     </div>
                 <div class="col-lg-8 col-md-12 chart"><p>Stock Price Display</p>

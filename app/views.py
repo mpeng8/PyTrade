@@ -2,7 +2,6 @@ from flask import render_template, url_for, redirect, session, abort, request, f
 import requests
 from app import app, db
 import re
-from app import db
 from app.models import User, Stock
 import pandas as pd
 import json
@@ -295,12 +294,16 @@ def not_found(e):
 @app.route("/editTime",methods=['GET','POST'])
 def editTime():
     userOldDate= request.form['startDate'];
-    session['startDate']=userOldDate;
-    session['endDate']=request.form['endDate'];
+    userNewDate = request.form['endDate'];
+    if userNewDate < userOldDate:
+        error = 'Invlaid Inputs: startDate cannot be later than endDate';
+    else:
+        session['startDate']=request.form['startDate'];
+        session['endDate']=request.form['endDate'];
     stockIDone=session['stockIDone'];
     q_user = User.query.filter(User.username == session['username']).first()
     cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
-    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock,result = '')
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock, error = error)
 
 @app.route("/getTime",methods=['GET'])
 def getTime():
