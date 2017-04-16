@@ -110,7 +110,6 @@ xhr.onload = function() {
 
  plotArea.attr('clip-path', 'url(#plotAreaClip)');
 
-
    // Set scale domains
  var minN = d3.min(stockData, function (d) { return d.date; }).getTime(),
      maxN = d3.max(stockData, function (d) { return d.date; }).getTime();
