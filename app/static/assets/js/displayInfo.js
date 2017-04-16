@@ -12,7 +12,6 @@ $('.popper').hover(function (e) {
     }
 });
 
-
 $('.popper').click(function (e) {
     var target = '#' + ($(this).attr('data-popbox'));
     if (!($(this).hasClass("show"))) {
@@ -20,7 +19,6 @@ $('.popper').click(function (e) {
     }
     $(this).toggleClass("show");
 });
-
 
 $('.highP_popper').hover(function (e) {
 

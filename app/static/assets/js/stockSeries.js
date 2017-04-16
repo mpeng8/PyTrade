@@ -164,8 +164,6 @@ document.getElementById("today_volume").innerText=stockData[length-1].volume;
  .datum(stockData)
  .call(series)
 
-
-
  var navWidth = width,
  navHeight = 100 - margin.top - margin.bottom;
 
