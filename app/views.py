@@ -295,6 +295,7 @@ def not_found(e):
 def editTime():
     userOldDate= request.form['startDate'];
     userNewDate = request.form['endDate'];
+    error = None;
     if userNewDate < userOldDate:
         error = 'Invlaid Inputs: startDate cannot be later than endDate';
     else:
