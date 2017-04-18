@@ -186,7 +186,7 @@ def stockinfo():
 def searchStock():
     if not session.get('username'):
         return redirect(url_for('timeout'))
-    print "alsdkjfkajsddfkj"
+
     post = "empty";
     stockIDone = "";
     if(request.method == "POST"):
@@ -197,6 +197,8 @@ def searchStock():
         session['stockName']=post;
     post=session['stockName'];
     stockIDone=session['stockIDone'];
+    print "stockID", session['stockIDone']
+    print "stockname", session['stockName']
     cur_stock = Stock.query.filter(Stock.stkid == stockIDone).first()
 
     if cur_stock == None:
@@ -254,8 +256,11 @@ def followerslist():
 
     followed = q_user.followed.all()
     follower = q_user.followers.all()
-
-    return render_template('follower.html', follower = follower, followed = followed)
+    error=None
+    if session.get('searchPersonError'):
+        error=session['searchPersonError']
+        session['searchPersonError'] = None
+    return render_template('follower.html', follower = follower, followed = followed, error=error)
 
 @app.route("/follow/<user>")
 def follow(user):
@@ -286,6 +291,29 @@ def lookup_profile():
     q2_user = User.query.filter(User.username == user).first()
     return render_template('profile.html', me = q_user, cur_user = q2_user)
 
+
+@app.route("/search_profile", methods=['POST'])
+def search_profile():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+    user = request.form['person']
+    print user
+    email=""
+    if re.match("[^@]+@[^@]+\.[^@]+",user):
+        email = user
+    error=""
+    q_user = User.query.filter(User.username == session['username']).first()
+    
+    if email== "":
+        q2_user = User.query.filter(User.username == user).first()
+    else:
+        q2_user = User.query.filter(User.email == email).first()
+
+    if q2_user == None:
+        session['searchPersonError'] = "Invalid name or email."
+        return redirect(url_for('followerslist'))
+
+    return render_template('profile.html', me = q_user, cur_user = q2_user)
 # error handling
 @app.errorhandler(404)
 def not_found(e):
@@ -293,6 +321,8 @@ def not_found(e):
 
 @app.route("/editTime",methods=['GET','POST'])
 def editTime():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
     userOldDate= request.form['startDate'];
     userNewDate = request.form['endDate'];
     error = None;
@@ -308,6 +338,8 @@ def editTime():
 
 @app.route("/getTime",methods=['GET'])
 def getTime():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
     data={}
     if 'startDate' in session:
         data['startDate']=session['startDate'];
@@ -319,7 +351,39 @@ def getTime():
         data['endDate']=""
     return jsonify(data=data)
 
+@app.route("/defaultDate")
+def defaultDate():
+    if not session.get('username'):
+        return redirect(url_for('timeout'))
+    data={}
+    session['startDate'] = ""
+    session['endDate'] = ""
+    q_user = User.query.filter(User.username == session['username']).first()
+    cur_stock = Stock.query.filter(Stock.stkid == session['stockIDone']).first()
+    return render_template('stockinfo.html',stockName=session['stockName'], stockID = session['stockIDone'], me = q_user, cur_stock = cur_stock)
+
+############################################################################################################################3
+# predicting stocks functions
 @app.route("/predictStocks", methods=['GET','POST'])
 def predictStocks():
-    result = mlClient.predictStock('AAPL');
-    return jsonify(data = result)
+    if not session.get('startDate') and not session.get('endDate'):
+        result = mlClient.predictStock(session['stockIDone'].strip());
+        a = jsonify(data = result)
+    else:
+        result = mlClient.predictStocksTimes(session['stockIDone'].strip(), session['startDate'], session['endDate']);
+        result = result.to_json(orient="index").replace("00:00:00", "")
+        l = result.split(",")
+        templist = []
+        for element in l:
+            element.replace("{" or "}", "");
+            element = element.split(":");
+            key = element[0].replace("{" or "}", "").replace("\"", "")
+            value = element[2].replace("}", "").replace("\"", "")
+            templist.append([key, value])
+        result = templist
+
+        je = json.JSONEncoder()
+        a = je.encode(result)
+        print a
+   
+    return a
