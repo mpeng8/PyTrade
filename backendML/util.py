@@ -13,7 +13,7 @@ def get_quandl(sd, ed, symb,db='WIKI/'):
 def minusdate(datestr):
     ls = datestr.split('-')
     daya = datetime(int(ls[0]), int(ls[1]), int(ls[2]))
-    delta = timedelta(days=34)
+    delta = timedelta(days=49)
     res = daya-delta
     rt = str(res.year) + '-' + str(res.month) + '-' + str(res.day)
     return rt
