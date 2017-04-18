@@ -4,9 +4,7 @@
       <form action = "/searchStock" method = "POST">
         <td><input onkeyPress = "myAutocomplete()" type="text" class="form-control" id="stockSearch" name = "stockName"
           placeholder="Please type in stock name or company name to search for the stock"></input></td>
-        <td><input type="submit" class="btn btn-default" style="
-  font:12pt Arial;color:white;
-   background-color:rgb(26, 188, 156);"value= "Find!"></input></td>
+        <td><input type="submit" class="button icon search" value= "Find!"></input></td>
       </form>
     </div>
     </tbody>
@@ -29,7 +27,7 @@
     {% for s in stocks%}
       <tr>
         <td><form action = "{{url_for('searchStock')}}" method = "POST"> <input name = "stockName" role="button" class="btn btn-link" type="submit" value = "{{s.stkid}} : {{s.company}}"></input></form></td>
-        <td><a role="button" href="{{url_for('deletestock', stkid = s.stkid)}}" class="btn btn-default">Delete</a></td>
+        <td><a role="button" href="{{url_for('deletestock', stkid = s.stkid)}}" class="button danger">Delete</a></td>
       </tr>
     {% endfor %}
     </tbody>
