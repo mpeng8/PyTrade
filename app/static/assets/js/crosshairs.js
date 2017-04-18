@@ -80,8 +80,8 @@ crosshairs = function () {
             circle.attr('display', 'inherit');
             calloutH.attr('display', 'inherit');
             calloutV.attr('display', 'inherit');
-            document.getElementById('select_high_price').innerText="High: "+nearest.high+","+"Low: "+nearest.low;
-            document.getElementById('select_open_price').innerText="Open: "+nearest.open+","+"Close: "+nearest.close;
+            document.getElementById('select_high_price').innerText="High: "+nearest.high+", "+"Low: "+nearest.low;
+            document.getElementById('select_open_price').innerText="Open: "+nearest.open+", "+"Close: "+nearest.close;
             document.getElementById('popup').style.display='block';
 
         }
