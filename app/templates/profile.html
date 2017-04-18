@@ -16,7 +16,7 @@
                     <div class="profile-widget profile-widget-info">
                           <div class="panel-body">
                             <div class="col-lg-2 col-sm-2">
-                              <h4>{{cur_user.username}}</h4>         
+                              <h4>{{cur_user.username}}</h4>
                               <div class="follow-ava">
                                   <img src="static/images/yzhou-profile.jpg" alt="">
                               </div>
@@ -34,12 +34,12 @@
                             <div class="col-lg-2 col-sm-6 follow-info weather-category">
                                       <ul>
                                           <li class="active">
-                                              
+
                                               <i class="fa fa-smile-o fa-2x"> </i><br>
                                                 {% if not me.is_following(cur_user)%}
-                                                  <a role ="button" href="{{ url_for('follow', user = cur_user.username)}}" class="btn btn-default"> follow</a>
+                                                  <a role ="button" href="{{ url_for('follow', user = cur_user.username)}}" class="button icon user"> follow</a>
                                                 {% else%}
-                                                  <a role ="button" class="btn btn-default disabled"> follow</a>
+                                                  <a role ="button" class="button icon user disable"> follow</a>
                                                 {% endif%}
                                           </li>
                                       </ul>
@@ -49,9 +49,9 @@
                                           <li class="active">
                                               <i class="fa fa-frown-o fa-2x"> </i><br>
                                               {% if me.is_following(cur_user)%}
-                                                <a type ="button" href="{{ url_for('unfollow', user = cur_user.username)}}" class="btn btn-default"> unfollow</a>
+                                                <a type ="button" href="{{ url_for('unfollow', user = cur_user.username)}}" class="button danger icon remove disable"> unfollow</a>
                                               {% else %}
-                                                <a type ="button" class="btn btn-default disabled"> unfollow</a>
+                                                <a type ="button" class="button danger icon remove disable" > unfollow</a>
                                               {% endif%}
                                           </li>
                                       </ul>
@@ -73,7 +73,7 @@
                             <tr>
                               <th>Stock Name:Company name</th>
                             </tr>
-                          </thead>  
+                          </thead>
                           <tbody>
                           {% for s in cur_user.stocks.all()%}
                             <tr>

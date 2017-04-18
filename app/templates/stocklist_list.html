@@ -27,7 +27,7 @@
     {% for s in stocks%}
       <tr>
         <td><form action = "{{url_for('searchStock')}}" method = "POST"> <input name = "stockName" role="button" class="btn btn-link" type="submit" value = "{{s.stkid}} : {{s.company}}"></input></form></td>
-        <td><a role="button" href="{{url_for('deletestock', stkid = s.stkid)}}" class="button danger">Delete</a></td>
+        <td><a role="button" href="{{url_for('deletestock', stkid = s.stkid)}}" class="button danger icon remove">Delete</a></td>
       </tr>
     {% endfor %}
     </tbody>
