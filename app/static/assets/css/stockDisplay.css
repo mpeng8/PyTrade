@@ -29,13 +29,13 @@
   stroke-width:1.5px;
 }
 .navigator .data {
-  fill: lightgrey;
+  fill:#F5FFFA;
   stroke-width: 0px;
 }
 
 .navigator .line {
   fill: none;
-  stroke: darkgrey;
+  stroke: steelblue;
   stroke-width: 1px;
 }
 
