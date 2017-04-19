@@ -4,6 +4,7 @@ tracker = function () {
         yScale = d3.scale.linear(),
         yValue = 0,
         movingAverage = 0,
+        volumeLine = 0,
         css = '';
 
     var tracker = function (selection) {
