@@ -96,11 +96,13 @@
                         <div class="form-group">
                         <form action="/editTime" method = "POST" onsubmit="validateDate()" style="border-radius: 12px;">
 
-                            <h5>Start Date: </h5><input type="date" required class="form-control"  name="startDate" id="startDate" Placeholder="start Date"></input>
-                            <h5>End Date:</h5>
+                            <h5 style="font-weight:bold;">Start Date: </h5><input type="date" required class="form-control"  name="startDate" id="startDate" Placeholder="start Date"></input>
+                            <h5 style="font-weight:bold;">End Date:</h5>
                             <input type="date" class="form-control" required id = "userInputEndDate" name = "endDate" id="endDate" max = '2000-13-13' Placeholder="end Date"></input>
-                            <input type="submit" class="btn btn-default" value = "submit date" style="margin: 10px 20px 5px 0px;"></input>
-                            <a role="button" href="{{url_for('defaultDate')}}" class="btn btn-default" style="margin: 10px 5px 5px 20px;">Reset date</a>
+                            <input type="submit" class="btn btn-primary" value = "submit date" style="margin: 10px 0px 5px 0px;
+                              font-weight:bold;
+                              text-shadow:0px 1px 0px #1570cd;"></input>
+                            <a role="button" href="{{url_for('defaultDate')}}" class="btn btn-default" style="margin: 10px 5px 5px 0px;font-weight:bold;text-shadow:0px 1px 0px #DCDCDC;">Reset date</a>
 
 
                         </form><!--editTime-->
@@ -110,12 +112,12 @@
                         {% endif %}
                     </div><!--col-lg6-->
                     {% if not session['startDate']%}
-                    <blockquote class="blockquote-reverse predTable" style="display: none; border-right: thick solid #F3F3F3;">
+                    <div class="predTable" style="display: none;">
                         <div style="font-family: Arial, Helvetica, sans-serif;">
                           <h1 style="color:#25383C;"> Prediction Result:</h1>
                           <h2 id = "defaultPredictDiv" style="text-align: center;color:#25383C;"></h2>
                         </div>
-                    </blockquote>
+                    </div>
                     {% endif %}
                 </div><!--col-lg4-->
 
