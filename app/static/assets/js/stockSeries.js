@@ -91,11 +91,6 @@ xhr.onload = function() {
      .xScale(xScale)
      .yScale(yScale);
 
-   // var gridlines = gridlines ()
-   //     .xScale(xScale)
-   //     .yScale(yScale)
-   //     .xTicks(10)
-   //     .yTicks(5);
 
  var svg = d3.select('.chart').append('svg')
              .attr('width', width + margin.left + margin.right)
@@ -104,20 +99,7 @@ xhr.onload = function() {
    // Create chart
  var g = svg.append('g')
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-            svg.selectAll("line.horizontalGrid").data(yScale.ticks(4)).enter()
-                .append("line")
-                    .attr(
-                    {
-                        "class":"horizontalGrid",
-                        "x1" : margin.right,
-                        "x2" : width,
-                        "y1" : function(d){ return yScale(d);},
-                        "y2" : function(d){ return yScale(d);},
-                        "fill" : "none",
-                        "shape-rendering" : "crispEdges",
-                        "stroke" : "black",
-                        "stroke-width" : "1px"
-                    });
+
  // Create plot area
  var plotArea = g.append('g');
 
