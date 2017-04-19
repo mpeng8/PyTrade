@@ -80,6 +80,9 @@ xhr.onload = function() {
 
  var yAxis = d3.svg.axis()
      .scale(yScale)
+     .innerTickSize(-width)
+    .outerTickSize(0)
+    .tickPadding(10)
      .orient('left');
 
 
@@ -97,10 +100,6 @@ xhr.onload = function() {
  var svg = d3.select('.chart').append('svg')
              .attr('width', width + margin.left + margin.right)
              .attr('height', height + margin.top + margin.bottom);
-svg.append("rect")
-                 .attr("width", "100%")
-                 .attr("height", "100%")
-                 .attr("fill", "white");
 
    // Create chart
  var g = svg.append('g')
