@@ -7,7 +7,9 @@
     stroke: green;
     fill:green;
 }
-
+.tick line{
+    opacity: 0.2;
+  }
 .grid line {
   stroke: lightgrey;
   stroke-opacity: 0.7;
