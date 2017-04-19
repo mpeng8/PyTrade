@@ -6,7 +6,7 @@ import SupervisedLearner
 
 def predictStock(symb):
     predlen=7
-    method='RF'
+    method='SVM'
     kwarg=None
     model = SupervisedLearner.SupervisedLearner(symb, predlen, method, kwarg)
     model.train()
@@ -20,7 +20,7 @@ def predictStock(symb):
 def predictStocksTimes(symb, startDate, endDate):
     #symb = 'AAPL'
     predlen=7
-    method='RF'
+    method='SVM'
     kwarg=None
     model = SupervisedLearner.SupervisedLearner(symb, predlen, method, kwarg)
     model.train()
