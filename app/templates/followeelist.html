@@ -13,7 +13,7 @@
               <form action = "/lookup_profile" method = "POST"> <input name = "name" role="button" class="btn btn-link" type="submit" value = "{{u.username}}"></input></form>
             </td>
             <td>
-              <a role ="button" href="{{ url_for('unfollow', user = u.username)}}" class="btn btn-default">Unfollow</a>
+              <a role ="button" href="{{ url_for('unfollow', user = u.username)}}" class="button danger icon trash">Unfollow</a>
             </td>
           </tr>
         {% endfor %}

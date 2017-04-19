@@ -82,6 +82,8 @@ xhr.onload = function() {
      .scale(yScale)
      .orient('left');
 
+
+
  var series = candlestick ()
      .xScale(xScale)
      .yScale(yScale);
@@ -95,11 +97,28 @@ xhr.onload = function() {
  var svg = d3.select('.chart').append('svg')
              .attr('width', width + margin.left + margin.right)
              .attr('height', height + margin.top + margin.bottom);
+svg.append("rect")
+                 .attr("width", "100%")
+                 .attr("height", "100%")
+                 .attr("fill", "white");
 
    // Create chart
  var g = svg.append('g')
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
+            svg.selectAll("line.horizontalGrid").data(yScale.ticks(4)).enter()
+                .append("line")
+                    .attr(
+                    {
+                        "class":"horizontalGrid",
+                        "x1" : margin.right,
+                        "x2" : width,
+                        "y1" : function(d){ return yScale(d);},
+                        "y2" : function(d){ return yScale(d);},
+                        "fill" : "none",
+                        "shape-rendering" : "crispEdges",
+                        "stroke" : "black",
+                        "stroke-width" : "1px"
+                    });
  // Create plot area
  var plotArea = g.append('g');
 
@@ -147,15 +166,15 @@ document.getElementById("today_volume").innerText=stockData[length-1].volume;
  yScale.range([height, 0]);
  // Draw axes
  g.append('g')
- .attr('class', 'x axis')
- .attr('transform', 'translate('+margin.left +', '+ height + ')')
- .call(xAxis);
+  .attr('class', 'x axis')
+  .attr('transform', 'translate('+margin.left +', '+ height + ')')
+  .call(xAxis);
 
  g.append('g')
  .attr('class', 'y axis')
  .call(yAxis);
 
- // plotArea.call(gridlines);
+
 
  // Draw the series.
  var dataSeries = plotArea.append('g')
@@ -163,6 +182,7 @@ document.getElementById("today_volume").innerText=stockData[length-1].volume;
  .attr('transform', 'translate(0'  + ',' + margin.top + ')')
  .datum(stockData)
  .call(series)
+
 
  var navWidth = width,
  navHeight = 100 - margin.top - margin.bottom;
@@ -221,6 +241,8 @@ document.getElementById("today_volume").innerText=stockData[length-1].volume;
           .datum(stockData)
           .call(trackers);
 
+
+
  function redrawChart() {
      dataSeries.call(series);
      movingAverage.call(trackers);
@@ -274,19 +296,19 @@ document.getElementById("today_volume").innerText=stockData[length-1].volume;
 
 
  plotArea.append('path')
-     .attr('class', 'overlay')
-     .attr('d', overlay(stockData))
-     .call(zoom);
+         .attr('class', 'overlay')
+         .attr('d', overlay(stockData))
+         .call(zoom);
 
  viewport.on("brushend", function () {
      updateZoomFromChart();
  });
 
  navChart.append("g")
-     .attr("class", "viewport")
-     .call(viewport)
-     .selectAll("rect")
-     .attr("height", navHeight);
+         .attr("class", "viewport")
+         .call(viewport)
+         .selectAll("rect")
+         .attr("height", navHeight);
 
  var daysShown = 12;
 
@@ -307,9 +329,9 @@ var crosshair = crosshairs()
                  .yScale(yScale);
 
 plotArea.append('path')
-                 .attr('class', 'overlay')
-                 .attr('d', overlay(stockData))
-                 .call(crosshair);
+        .attr('class', 'overlay')
+        .attr('d', overlay(stockData))
+        .call(crosshair);
 };
 
 xhr.onerror = function() {
