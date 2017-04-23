@@ -45,13 +45,14 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 #### Python
-PyTrade uses [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). There are two ways to install Python in your computer.
-
-##### Install Python from Python Software Foundation
-To download and install Python from Python Software Foundation, please go to Python Software Foundation download page. [HERE](https://www.python.org/downloads/)
-
-##### Install Python from Anaconda(RECOMMEND)
+PyTrade uses [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). We recommend installing Python from Anaconda
 [Anaconda](https://www.continuum.io/anaconda-overview) is the leading open data science platform powered by Python. To download Anaconda, please go to Anaconda download page. [HERE](https://www.continuum.io/downloads)
+
+After you have installed Anaconda, you can run the following command in your terminal to install required packages
+```
+$ python package_install.py
+```
+Then, you can skip the following sections.
 
 #### TA-Lib
 TA-Lib is a Python package that PyTrade uses to perform technical analysis of financial market data.
@@ -82,7 +83,7 @@ To install from a Linux package manager, type the following command into your te
 sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 ```
 
-For installation methods or other systems, please checkout [NumPy Download Page](https://www.scipy.org/install.html)
+For other installation methods or other systems, please checkout [NumPy Download Page](https://www.scipy.org/install.html)
 
 #### pandas
 
@@ -94,7 +95,7 @@ To install from PyPI, type the following command into your terminal:
 ```
 pip install pandas
 ```
-For installation methods or other systems, please checkout [pandas Download Page](http://pandas.pydata.org/pandas-docs/stable/install.html)
+For other installation methods or other systems, please checkout [pandas Download Page](http://pandas.pydata.org/pandas-docs/stable/install.html)
 
 #### scikit-learn
 
@@ -106,7 +107,7 @@ To install from PyPI, type the following command into your terminal:
 ```
 pip install -U scikit-learn
 ```
-For installation methods or other systems, please checkout [scikit-learn Download Page](http://scikit-learn.org/stable/install.html)
+For other installation methods or other systems, please checkout [scikit-learn Download Page](http://scikit-learn.org/stable/install.html)
 
 ### Dependent libraries that must be installed
 
@@ -116,7 +117,10 @@ Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com)
 
 ### Download instructions
 
-To download PyTrade, please click the 'Clone or download' button on the upper right corner.
+To download PyTrade, type the following command in your terminal:
+```
+git clone https://github.com/mpeng8/PyTrade.git
+```
 
 ### Installation of actual application
 
@@ -160,11 +164,13 @@ I got a 'Woops, there was an error making the request.' message popped out.
 ```
 This typically means that the third-party plugin is not running correctly. You can just refresh the page.
 
-## Built With
+```
+error: The requested URL returned error: 401 while accessing
+https://github.com/mpeng8/PyTrade.git
+fatal: HTTP request failed
+```
+Note that you need to ensure the remote is correct. The repository you're trying to fetch must exist on GitHub, and the URL is case-sensitive.
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 
 ## Authors
