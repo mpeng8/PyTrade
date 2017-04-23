@@ -12,7 +12,7 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
    - [Known bugs and defects](#known-bugs-and-defects)
 - [Install Guide](#install-guide)
    - [Prerequisites](#prerequisites)
-     - [TA-Lib](#TA-Lib)
+     - [TA-Lib](#ta-Lib)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
    - [Download instructions](#download-instructions)
    - [Installation of actual application](#installation-of-actual-application)
