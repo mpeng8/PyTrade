@@ -6,16 +6,22 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
 
 ## Table of Contents
 
-- [Install Guide](##install-guide)
 - [Release Notes](#release-notes)
-- [Support](#support)
-- [Contributing](#contributing)
+- [Install Guide](#install-guide)
+  - [Prerequisites](#Prerequisites)
+  - [Dependent libraries that must be installed](#Dependent-libraries-that-must-be-installed)
+- [Authors](#authors)
+
+
+## Release Notes
+
+Add additional notes about how to deploy this on a live system
 
 ## Install Guide
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Pre-requisites
+### Prerequisites
 
 What things you need to install the software and how to install them
 
@@ -52,6 +58,12 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
+### Run instructions
+To run PyTrade on your localhost server, run the following command in your terminal.
+
+```
+$python run.py
+```
 
 ## Running the tests
 
@@ -73,9 +85,6 @@ Explain what these tests test and why
 Give an example
 ```
 
-## Release Notes
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
@@ -86,24 +95,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* **Mengyi Peng** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Mengyi Peng** - *Stock Price Visualization development* - [PurpleBooth](https://github.com/mpeng8/PyTrade)
+* **Xinmin Shi** - *AWS Set-up*
+* **Mingjun Xie** - *stuff* -[PurpleBooth](https://github.com/mpeng8/PyTrade)
 * **Yihan Zhou** - *Stuff* - [PurpleBooth](https://github.com/mpeng8/PyTrade/tree/mongazer)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
-
-
-
-This is the codebase for PyTrade prototype.
-
-How to run:
-$python run.py
-
-Need Chrome Plugin:
-https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US
