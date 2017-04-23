@@ -23,6 +23,12 @@ sklearn
 ```
 ### Dependent libraries that must be installed
 
+Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com), PyTrade needs to make a cross-domain API call to get stock data from quandl. Currently, PyTrade relies on a third-party plugin to make API calls.   
+
+
+* [Allow-Control-Allow-Origin](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US)
+
+
 ### Install Guide
 
 A step by step series of examples that tell you have to get a development env running
