@@ -7,15 +7,27 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
 ## Table of Contents
 
 - [Release Notes](#release-notes)
+   - [New software features for this release](#new-software-features-for-this-release)
+   - [Bug fixes made since the last release](#bug-fixes-made-since-the-last-release)
+   - [Known bugs and defects](#known-bugs-and-defects)
 - [Install Guide](#install-guide)
    - [Prerequisites](#prerequisites)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
+   - [Download instructions](#download-instructions)
+   - [Installation of actual application](#installation-of-actual-application)
+   - [Run instructions](#run-instructions)
+   - [Troubleshooting](#troubleshooting)
 - [Authors](#authors)
 
 
 ## Release Notes
 
-Add additional notes about how to deploy this on a live system
+Stuff
+### New software features for this release
+### Bug fixes made since the last release
+### Known bugs and defects
+
+
 
 ## Install Guide
 
@@ -58,33 +70,28 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
+
+### Installation of actual application
+
+PyTrade does not require any additional installation. After you have downloaded PyTrade repository, you are ready to run PyTrade.
+
 ### Run instructions
 To run PyTrade on your localhost server, run the following command in your terminal.
 
+If your system is Mac or Linux, use the following command
 ```
 $python run.py
 ```
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+If your system is Windows, use the following command
 ```
-Give an example
+python run.py
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
+### Troubleshooting
 ```
-Give an example
+'python' is not recognized as an internal or external command, operable program or batch file.
 ```
-
 
 ## Built With
 
