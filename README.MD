@@ -1,6 +1,8 @@
 # PyTrade
 
-PyTrade is a website trading application that provides stock data visualization and predictive models of stock market trends based on SPY (S&P 500, or Standard & Poor’s 500), DJI (Dow Jones Industrial Average), and NDX (NASDAQ - 100). PyTrade serves as a platform for both professional investors and newcomers to manage their stock holdings, educate them about the historical background of markets, and provide suggestions about trading strategies based on PyTrade’s validated models of stock markets. Additionally, PyTrade aims to become a valid source of information for investors to learn about future market trends by developing a high performance model of stock markets.
+PyTrade is a website trading application that provides stock data visualization and predictive models of stock market trends based on SPY (S&P 500, or Standard & Poor’s 500), DJI (Dow Jones Industrial Average), and NDX (NASDAQ - 100).
+
+PyTrade serves as a platform for both professional investors and newcomers to manage their stock holdings, educate them about the historical background of markets, and provide suggestions about trading strategies based on PyTrade’s validated models of stock markets. Additionally, PyTrade aims to become a valid source of information for investors to learn about future market trends by developing a high performance model of stock markets.
 
 ## Getting Started
 
@@ -14,7 +16,7 @@ What things you need to install the software and how to install them
 Give examples
 ```
 
-### Installing
+### Install Guide
 
 A step by step series of examples that tell you have to get a development env running
 
@@ -62,13 +64,6 @@ Add additional notes about how to deploy this on a live system
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
