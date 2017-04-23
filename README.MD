@@ -1,6 +1,6 @@
-# Project Title
+# PyTrade
 
-One Paragraph of project description goes here
+PyTrade is a website trading application that provides stock data visualization and predictive models of stock market trends based on SPY (S&P 500, or Standard & Poor’s 500), DJI (Dow Jones Industrial Average), and NDX (NASDAQ - 100). PyTrade serves as a platform for both professional investors and newcomers to manage their stock holdings, educate them about the historical background of markets, and provide suggestions about trading strategies based on PyTrade’s validated models of stock markets. Additionally, PyTrade aims to become a valid source of information for investors to learn about future market trends by developing a high performance model of stock markets.
 
 ## Getting Started
 
@@ -72,13 +72,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Mengyi Peng** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Yihan Zhou** - *Stuff* - [PurpleBooth](https://github.com/mpeng8/PyTrade/tree/mongazer)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
