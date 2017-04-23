@@ -159,6 +159,7 @@ compilation terminated.
 ```
 This typically means that it can't find the underlying TA-Lib library, a dependency which needs to be installed.
 ####
+
 ```
 Command C:\Python27\python.exe -c "import setuptools, tokenize;__file__='c:\\users\\jon\\appdata\\local\\temp\\pip_build_jon\\numpy\\setup.py';exec(compile(getattr(tokenize, 'open', open(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" install --record c:\users\jon\appdata\local\temp\pip-qnynnf-record\install-record.txt --single-version-externally-managed
 
