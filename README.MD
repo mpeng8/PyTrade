@@ -7,7 +7,7 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
 ## Table of Contents
 
 - [Install Guide](##installguide)
-- [Usage](#usage)
+- [Release Notes](#releasenotes)
 - [Support](#support)
 - [Contributing](#contributing)
 
@@ -36,8 +36,6 @@ Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com)
 
 ### Download instructions
 
-
-### Install Guide
 
 A step by step series of examples that tell you have to get a development env running
 
@@ -75,7 +73,7 @@ Explain what these tests test and why
 Give an example
 ```
 
-## Deployment
+## Release Notes
 
 Add additional notes about how to deploy this on a live system
 
