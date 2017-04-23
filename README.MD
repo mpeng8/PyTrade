@@ -92,22 +92,7 @@ Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com)
 
 ### Download instructions
 
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+To download PyTrade, please click the 'Clone or download' button on the upper right corner. 
 
 ### Installation of actual application
 
