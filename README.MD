@@ -12,6 +12,7 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
    - [Known bugs and defects](#known-bugs-and-defects)
 - [Install Guide](#install-guide)
    - [Prerequisites](#prerequisites)
+     - [TA-Lib](#TA-Lib)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
    - [Download instructions](#download-instructions)
    - [Installation of actual application](#installation-of-actual-application)
@@ -37,15 +38,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
-* TAlib
+
+#### TA-Lib
 
 numpy
 
 panda
 
-sklearn
-```
+#### sklearn
+
 ### Dependent libraries that must be installed
 
 Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com), PyTrade currently relies on a third-party plugin to make API calls.  
