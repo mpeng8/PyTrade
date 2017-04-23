@@ -6,8 +6,8 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
 
 ## Table of Contents
 
-- [Install Guide](##installguide)
-- [Release Notes](#release notes)
+- [Install Guide](##install-guide)
+- [Release Notes](#release-notes)
 - [Support](#support)
 - [Contributing](#contributing)
 
