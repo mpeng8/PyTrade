@@ -68,7 +68,7 @@ $ python setup.py install
 #### NumPy
 NumPy is a Python package for scientific computations.
 
-To install from Anaconda,
+To install from Anaconda, type the following command into your terminal:
 ```
 conda install -c anaconda numpy=1.12.1
 ```
@@ -78,6 +78,7 @@ To install from a Linux package manager, type the following command into your te
 sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 ```
 
+For installation methods or other systems, please checkout [NumPy Download Page](#https://www.scipy.org/install.html)
 
 #### panda
 
