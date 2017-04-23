@@ -40,7 +40,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 #### Python
-PyTrade uses [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). There are two ways to install Python.
+PyTrade uses [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). There are two ways to install Python in your computer.
 
 ##### Install Python from Python Software Foundation
 To download and install Python from Python Software Foundation, please go to Python Software Foundation download page. [HERE](https://www.python.org/downloads/)
@@ -49,10 +49,23 @@ To download and install Python from Python Software Foundation, please go to Pyt
 [Anaconda](https://www.continuum.io/anaconda-overview) is the leading open data science platform powered by Python. To download Anaconda, please go to Anaconda download page. [HERE](https://www.continuum.io/downloads)
 
 #### TA-Lib
+TA-Lib is a Python package that PyTrade uses to perform technical analysis of financial market data.
+To install from Anaconda, type the following command into your terminal:
+```
+conda install -c quantopian ta-lib=0.4.9
+```
+To install from PyPI, type the following command into your terminal:
+```
+$ pip install TA-Lib
+```
+Or checkout the sources[HERE](https://pypi.python.org/pypi/TA-Lib), and type the following command into your terminal:
+```
+$ python setup.py install
+```
 
-numpy
+#### numpy
 
-panda
+#### panda
 
 #### sklearn
 
@@ -102,6 +115,25 @@ python run.py
 ```
 'python' is not recognized as an internal or external command, operable program or batch file.
 ```
+```
+talib/common.c:8:22: fatal error: pyconfig.h: No such file or directory
+#include "pyconfig.h"
+^
+compilation terminated.
+error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+```
+This typically means that you need the Python headers, and should run
+something like:
+
+```
+$ sudo apt-get install python3-dev
+```
+
+```
+func.c:256:28: fatal error: ta-lib/ta_libc.h: No such file or directory
+compilation terminated.
+```
+This typically means that it can't find the underlying TA-Lib library, a dependency which needs to be installed.
 
 ## Built With
 
