@@ -4,7 +4,14 @@ PyTrade is a website trading application that provides stock data visualization 
 
 PyTrade serves as a platform for both professional investors and newcomers to manage their stock holdings, educate them about the historical background of markets, and provide suggestions about trading strategies based on PyTrade’s validated models of stock markets. Additionally, PyTrade aims to become a valid source of information for investors to learn about future market trends by developing a high performance model of stock markets.
 
-## Getting Started
+## Table of Contents
+
+- [Installation](##install guide)
+- [Usage](#usage)
+- [Support](#support)
+- [Contributing](#contributing)
+
+## Install Guide
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -23,10 +30,11 @@ sklearn
 ```
 ### Dependent libraries that must be installed
 
-Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com), PyTrade needs to make a cross-domain API call to get stock data from quandl. Currently, PyTrade relies on a third-party plugin to make API calls.   
-
+Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com), PyTrade currently relies on a third-party plugin to make API calls.  
 
 * [Allow-Control-Allow-Origin](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en-US)
+
+### Download instructions
 
 
 ### Install Guide
