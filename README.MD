@@ -15,6 +15,8 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
      - [Python](#python)
      - [TA-Lib](#ta-lib)
      - [NumPy](#numpy)
+     - [pandas](#pandas)
+     - [scikit-learn](#scikit-learn)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
    - [Download instructions](#download-instructions)
    - [Installation of actual application](#installation-of-actual-application)
@@ -80,9 +82,29 @@ sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython
 
 For installation methods or other systems, please checkout [NumPy Download Page](https://www.scipy.org/install.html)
 
-#### panda
+#### pandas
 
-#### sklearn
+To install from Anaconda, type the following command into your terminal:
+```
+conda install -c anaconda pandas=0.19.2
+```
+To install from PyPI, type the following command into your terminal:
+```
+pip install pandas
+```
+For installation methods or other systems, please checkout [pandas Download Page](http://pandas.pydata.org/pandas-docs/stable/install.html)
+
+#### scikit-learn
+
+To install from Anaconda, type the following command into your terminal:
+```
+conda install scikit-learn
+```
+To install from PyPI, type the following command into your terminal:
+```
+pip install -U scikit-learn
+```
+For installation methods or other systems, please checkout [scikit-learn Download Page](http://scikit-learn.org/stable/install.html)
 
 ### Dependent libraries that must be installed
 
@@ -101,21 +123,15 @@ PyTrade does not require any additional installation. After you have downloaded 
 ### Run instructions
 To run PyTrade on your localhost server, run the following command in your terminal.
 
-If your system is Mac or Linux, use the following command
 ```
-$python run.py
-```
-
-If your system is Windows, use the following command
-```
-python run.py
+$ python run.py
 ```
 
 ### Troubleshooting
 ```
 'python' is not recognized as an internal or external command, operable program or batch file.
 ```
-This typically means that your Python path is not declared. We suggest follow the instructions [here](https://docs.python.org/2/using/windows.html#excursus-setting-environment-variables).
+This typically means that your Python path is not declared. We suggest following the instructions [here](https://docs.python.org/2/using/windows.html#excursus-setting-environment-variables).
 
 ```
 talib/common.c:8:22: fatal error: pyconfig.h: No such file or directory
@@ -138,7 +154,7 @@ compilation terminated.
 This typically means that it can't find the underlying TA-Lib library, a dependency which needs to be installed.
 
 ```
-The candle-stick chart for stock price visualization is not displaying.
+I got a 'Woops, there was an error making the request.' message popped out.
 ```
 This typically means that the third-party plugin is not running correctly. You can just refresh the page.
 
