@@ -92,7 +92,7 @@ Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com)
 
 ### Download instructions
 
-To download PyTrade, please click the 'Clone or download' button on the upper right corner. 
+To download PyTrade, please click the 'Clone or download' button on the upper right corner.
 
 ### Installation of actual application
 
@@ -115,6 +115,8 @@ python run.py
 ```
 'python' is not recognized as an internal or external command, operable program or batch file.
 ```
+This typically means that your Python path is not declared. We suggest follow the instructions [here](https://docs.python.org/2/using/windows.html#excursus-setting-environment-variables).
+
 ```
 talib/common.c:8:22: fatal error: pyconfig.h: No such file or directory
 #include "pyconfig.h"
@@ -135,6 +137,11 @@ compilation terminated.
 ```
 This typically means that it can't find the underlying TA-Lib library, a dependency which needs to be installed.
 
+```
+The candle-stick chart for stock price visualization is not displaying.
+```
+This typically means that the third-party plugin is not running correctly. You can just refresh the page.
+
 ## Built With
 
 * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
@@ -144,7 +151,7 @@ This typically means that it can't find the underlying TA-Lib library, a depende
 
 ## Authors
 
-* **Mengyi Peng** - *Stock Price Visualization development* - [PurpleBooth](https://github.com/mpeng8/PyTrade)
+* **Mengyi Peng** - *Stock Price Visualization development*
 * **Xinmin Shi** - *AWS Set-up*
-* **Mingjun Xie** - *stuff* -[PurpleBooth](https://github.com/mpeng8/PyTrade)
-* **Yihan Zhou** - *Stuff* - [PurpleBooth](https://github.com/mpeng8/PyTrade/tree/mongazer)
+* **Mingjun Xie** - *stuff*
+* **Yihan Zhou** - *Stuff*
