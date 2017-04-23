@@ -152,7 +152,7 @@ something like:
 ```
 $ sudo apt-get install python3-dev
 ```
-*
+
 ```
 func.c:256:28: fatal error: ta-lib/ta_libc.h: No such file or directory
 compilation terminated.
@@ -174,13 +174,12 @@ pip install wheel
 pip install numpy‑1.9.1+mkl‑cp27‑none‑win32.whl
 ```
 
-*
 ```
 Command /usr/bin/python -c "import setuptools, tokenize;__file__='/tmp/pip_build_reihaneh/sklearn/setup.py';exec(compile(getattr(tokenize, 'open', open)(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" install --record /tmp/pip-89YQB7-record/install-record.txt --single-version-externally-managed --compile failed with error code 1 in /tmp/pip_build_reihaneh/sklearn
 Storing debug log for failure in /home/reihaneh/.pip/pip.log
 ```
-This typically happens because your install command for scikit-learn is incorrect. Please re-check your install command.
-* 
+This typically happens because your install command for scikit-learn is incorrect. Please re-check your install command
+
 ```
 I got a 'Woops, there was an error making the request.' message popped out.
 ```
