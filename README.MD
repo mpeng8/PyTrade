@@ -14,6 +14,7 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
    - [Prerequisites](#prerequisites)
      - [Python](#python)
      - [TA-Lib](#ta-lib)
+     - [NumPy](#numpy)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
    - [Download instructions](#download-instructions)
    - [Installation of actual application](#installation-of-actual-application)
@@ -50,6 +51,7 @@ To download and install Python from Python Software Foundation, please go to Pyt
 
 #### TA-Lib
 TA-Lib is a Python package that PyTrade uses to perform technical analysis of financial market data.
+
 To install from Anaconda, type the following command into your terminal:
 ```
 conda install -c quantopian ta-lib=0.4.9
@@ -58,12 +60,24 @@ To install from PyPI, type the following command into your terminal:
 ```
 $ pip install TA-Lib
 ```
-Or checkout the sources[HERE](https://pypi.python.org/pypi/TA-Lib), and type the following command into your terminal:
+Or checkout the [sources](https://pypi.python.org/pypi/TA-Lib), and type the following command into your terminal:
 ```
 $ python setup.py install
 ```
 
-#### numpy
+#### NumPy
+NumPy is a Python package for scientific computations.
+
+To install from Anaconda,
+```
+conda install -c anaconda numpy=1.12.1
+```
+
+To install from a Linux package manager, type the following command into your terminal:
+```
+sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+```
+
 
 #### panda
 
