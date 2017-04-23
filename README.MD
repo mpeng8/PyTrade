@@ -158,6 +158,18 @@ func.c:256:28: fatal error: ta-lib/ta_libc.h: No such file or directory
 compilation terminated.
 ```
 This typically means that it can't find the underlying TA-Lib library, a dependency which needs to be installed.
+```
+Command C:\Python27\python.exe -c "import setuptools, tokenize;__file__='c:\\users\\jon\\appdata\\local\\temp\\pip_build_jon\\numpy\\setup.py';exec(compile(getattr(tokenize, 'open', open(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" install --record c:\users\jon\appdata\local\temp\pip-qnynnf-record\install-record.txt --single-version-externally-managed
+
+--compile failed with error code 1 in c:\users\jon\appdata\local\temp\pip_build_jon\numpyStoring
+
+debug log for failure in C:\Users\jon\pip\pip.log
+```
+This typically means that wheel(.whl file) is not supported. You may try run something like:
+```
+pip install wheel
+pip install numpy‑1.9.1+mkl‑cp27‑none‑win32.whl
+```
 
 ```
 I got a 'Woops, there was an error making the request.' message popped out.
