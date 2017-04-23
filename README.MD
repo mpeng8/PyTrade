@@ -12,6 +12,7 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
    - [Known bugs and defects](#known-bugs-and-defects)
 - [Install Guide](#install-guide)
    - [Prerequisites](#prerequisites)
+     - [Python](#python)
      - [TA-Lib](#ta-lib)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
    - [Download instructions](#download-instructions)
@@ -38,6 +39,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
+#### Python
+PyTrade uses [Python 2.7.12](https://www.python.org/downloads/release/python-2712/). There are two ways to install Python.
+
+##### Install Python from Python Software Foundation
+To download and install Python from Python Software Foundation, please go to Python Software Foundation download page. [HERE](https://www.python.org/downloads/)
+
+##### Install Python from Anaconda(RECOMMEND)
+[Anaconda](https://www.continuum.io/anaconda-overview) is the leading open data science platform powered by Python. To download Anaconda, please go to Anaconda download page. [HERE](https://www.continuum.io/downloads)
 
 #### TA-Lib
 
