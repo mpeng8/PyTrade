@@ -8,8 +8,8 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
 
 - [Release Notes](#release-notes)
 - [Install Guide](#install-guide)
-  - [Prerequisites](#Prerequisites)
-  - [Dependent libraries that must be installed](#Dependent-libraries-that-must-be-installed)
+   - [Prerequisites](#prerequisites)
+   - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
 - [Authors](#authors)
 
 
