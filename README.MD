@@ -6,15 +6,22 @@ PyTrade serves as a platform for both professional investors and newcomers to ma
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
+### Pre-requisites
 
 What things you need to install the software and how to install them
 
 ```
-Give examples
+* TAlib
+
+numpy
+
+panda
+
+sklearn
 ```
+### Dependent libraries that must be installed
 
 ### Install Guide
 
