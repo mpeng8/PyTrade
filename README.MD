@@ -78,7 +78,7 @@ To install from a Linux package manager, type the following command into your te
 sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 ```
 
-For installation methods or other systems, please checkout [NumPy Download Page](#https://www.scipy.org/install.html)
+For installation methods or other systems, please checkout [NumPy Download Page](https://www.scipy.org/install.html)
 
 #### panda
 
