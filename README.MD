@@ -2,7 +2,9 @@
 
 PyTrade is a website trading application that provides stock data visualization and predictive models of stock market trends based on SPY (S&P 500, or Standard & Poor’s 500), DJI (Dow Jones Industrial Average), and NDX (NASDAQ - 100).
 
-PyTrade serves as a platform for both professional investors and newcomers to manage their stock holdings, educate them about the historical background of markets, and provide suggestions about trading strategies based on PyTrade’s validated models of stock markets. Additionally, PyTrade aims to become a valid source of information for investors to learn about future market trends by developing a high performance model of stock markets.
+PyTrade serves as a platform for both professional investors and newcomers to manage their stock holdings, educate them about the historical background of markets, and provide suggestions about trading strategies based on PyTrade’s validated models of stock markets.
+
+Additionally, PyTrade aims to become a valid source of information for investors to learn about future market trends by developing a high performance model of stock markets.
 
 ## Table of Contents
 
