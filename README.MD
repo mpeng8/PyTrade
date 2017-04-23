@@ -152,7 +152,7 @@ something like:
 ```
 $ sudo apt-get install python3-dev
 ```
-
+* 
 ```
 func.c:256:28: fatal error: ta-lib/ta_libc.h: No such file or directory
 compilation terminated.
