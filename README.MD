@@ -124,6 +124,17 @@ pip install -U scikit-learn
 ```
 For other installation methods or other systems, please checkout [scikit-learn Download Page](http://scikit-learn.org/stable/install.html)
 
+#### sqlalchemy
+To install from Anaconda, type the following command into your terminal:
+```
+conda install -c anaconda sqlalchemy=1.1.9
+```
+
+To install from PyPI, type the following command into your terminal:
+```
+pip install SQLAlchemy
+```
+
 ### Dependent libraries that must be installed
 
 Since PyTrade's real-time stock data comes from [quandl](https://www.quandl.com), PyTrade currently relies on a third-party plugin to make API calls.  
