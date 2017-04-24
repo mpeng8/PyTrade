@@ -19,7 +19,7 @@ Additionally, PyTrade aims to become a valid source of information for investors
      - [NumPy](#numpy)
      - [pandas](#pandas)
      - [scikit-learn](#scikit-learn)
-     - [falsk-sqlalchemy](#flask-sqlalchemy)
+     - [flask-sqlalchemy](#flask-sqlalchemy)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
    - [Download instructions](#download-instructions)
    - [Installation of actual application](#installation-of-actual-application)
