@@ -29,7 +29,7 @@ Additionally, PyTrade aims to become a valid source of information for investors
 
 ## Release Notes
 
-Stuff
+This section will introduce some new features in our latest improvement and report some known bugs that still need to be fixed.
 ### New software features for this release
 1. Users can follow and unfollow other users and see what stocks other users are following
 2. Interactive stock price visualization provides user without any finance background the definitions and explanations of the terminologies. They can also select time frame for displaying stock prices during a particular time and zoom in, out to see detailed parts or overall views of the market trend.
