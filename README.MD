@@ -206,27 +206,14 @@ pip install numpy‑1.9.1+mkl‑cp27‑none‑win32.whl
 Command /usr/bin/python -c "import setuptools, tokenize;__file__='/tmp/pip_build_reihaneh/sklearn/setup.py';exec(compile(getattr(tokenize, 'open', open)(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" install --record /tmp/pip-89YQB7-record/install-record.txt --single-version-externally-managed --compile failed with error code 1 in /tmp/pip_build_reihaneh/sklearn
 Storing debug log for failure in /home/reihaneh/.pip/pip.log
 ```
+
+If there's error indicating that you don't have gcc when using linux to install numpy, you can do:
+```
+apt-get install build-essential python-dev
+```
+to install the things that missing for python development.
+
 This typically happens because your install command for scikit-learn is incorrect. Please re-check your install command
-
-```
-I got a 'Woops, there was an error making the request.' message popped out.
-```
-This typically means that the third-party plugin is not running correctly. You can just refresh the page.
-
-```
-error: The requested URL returned error: 401 while accessing
-https://github.com/mpeng8/PyTrade.git
-fatal: HTTP request failed
-```
-Note that you need to ensure the remote is correct. The repository you're trying to fetch must exist on GitHub, and the URL is case-sensitive.
-
-```
-Command python setup.py egg_info failed with error code 1 in c:\users[username]\appdata\local\temp\pip_build_[username]\pandas
-```
-This is the error you might see when doing pip install pandas. You can try the following steps:
-
-Download the relevant packages from Christoph Gohlke's [Python Extension Packages for Windows repository](http://www.lfd.uci.edu/~gohlke/pythonlibs/). You'll find the files for pandas here as well as a list of other required dependencies for pandas [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pandas).
-
 
 ```
  Exception:
@@ -256,6 +243,28 @@ For those who are using linux. This means that you are not the root user. So you
  sudo pip install scikit-learn
 ```
 to install scikit-learn as root user.
+
+```
+I got a 'Woops, there was an error making the request.' message popped out.
+```
+This typically means that the third-party plugin is not running correctly. You can just refresh the page.
+
+```
+error: The requested URL returned error: 401 while accessing
+https://github.com/mpeng8/PyTrade.git
+fatal: HTTP request failed
+```
+Note that you need to ensure the remote is correct. The repository you're trying to fetch must exist on GitHub, and the URL is case-sensitive.
+
+```
+Command python setup.py egg_info failed with error code 1 in c:\users[username]\appdata\local\temp\pip_build_[username]\pandas
+```
+This is the error you might see when doing pip install pandas. You can try the following steps:
+
+Download the relevant packages from Christoph Gohlke's [Python Extension Packages for Windows repository](http://www.lfd.uci.edu/~gohlke/pythonlibs/). You'll find the files for pandas here as well as a list of other required dependencies for pandas [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pandas).
+
+
+
 
 ## Authors
 
