@@ -31,9 +31,14 @@ Additionally, PyTrade aims to become a valid source of information for investors
 
 Stuff
 ### New software features for this release
+1. Users can follow and unfollow other users and see what stocks other users are following
+2. Interactive stock price visualization provides user without any finance background the definitions and explanations of the terminologies. They can also select time frame for displaying stock prices during a particular time and zoom in, out to see detailed parts or overall views of the market trend.
+3. Users are able to consult Pytrade to get suggestions based on Pytrade's backend stock prediction model. They can select time frame for suggestions, for example, let Pytrade making stock price predictions based on a period of time. In addition, without selecting the time frame, Pytrade will use today's date as default time frame to make stock price prediction and give a suggestion for tomorrow (to sell, buy or stay).
 ### Bug fixes made since the last release
+1. Javascript and plug in bugs: such as the crossover website information request using Allow-Control-Allow-Origin from google chrome plugin.
+2. Stock list table paging, stock searching problem fixed. Now the stock list table can be displayed with 10, 25, 50 ,100 entries per page as they want, and when searching for new stocks, the stock name can be auto-completed.
 ### Known bugs and defects
-
+1. Some stocks can not be fetched from Quandl, because invalid stock name or insufficient data.
 
 
 ## Install Guide
@@ -198,5 +203,5 @@ Note that you need to ensure the remote is correct. The repository you're trying
 
 * **Mengyi Peng** - *Stock Price Visualization development*
 * **Xinmin Shi** - *AWS Set-up*
-* **Mingjun Xie** - *stuff*
-* **Yihan Zhou** - *Stuff*
+* **Mingjun Xie** - *Database Design and development*
+* **Yihan Zhou** - *Machine learning model implementation and optimization*
