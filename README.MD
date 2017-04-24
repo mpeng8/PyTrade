@@ -220,7 +220,42 @@ fatal: HTTP request failed
 ```
 Note that you need to ensure the remote is correct. The repository you're trying to fetch must exist on GitHub, and the URL is case-sensitive.
 
+```
+Command python setup.py egg_info failed with error code 1 in c:\users[username]\appdata\local\temp\pip_build_[username]\pandas
+```
+This is the error you might see when doing pip install pandas. You can try the following steps:
 
+Download the relevant packages from Christoph Gohlke's [Python Extension Packages for Windows repository](http://www.lfd.uci.edu/~gohlke/pythonlibs/). You'll find the files for pandas here as well as a list of other required dependencies for pandas [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pandas).
+
+
+```
+ Exception:
+      Traceback (most recent call last):
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip-6.0.8-py2.7.egg/pip/basecommand.py", line 232, in main
+          status = self.run(options, args)
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip-6.0.8-py2.7.egg/pip/commands/install.py", line 347, in run
+          root=options.root_path,
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip-6.0.8-py2.7.egg/pip/req/req_set.py", line 543, in install
+          requirement.uninstall(auto_confirm=True)
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip-6.0.8-py2.7.egg/pip/req/req_install.py", line 667, in uninstall
+          paths_to_remove.remove(auto_confirm)
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip-6.0.8-py2.7.egg/pip/req/req_uninstall.py", line 126, in remove
+          renames(path, new_path)
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/pip-6.0.8-py2.7.egg/pip/utils/__init__.py", line 316, in renames
+          shutil.move(old, new)
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py", line 300, in move
+          rmtree(src)
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py", line 252, in rmtree
+          onerror(os.remove, fullname, sys.exc_info())
+        File "/usr/local/Cellar/python/2.7.9/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py", line 250, in rmtree
+          os.remove(fullname)
+      OSError: [Errno 13] Permission denied: '/Library/Python/2.7/site-packages/numpy-1.8.0-py2.7.egg-info/dependency_links.txt'
+```
+For those who are using linux. This means that you are not the root user. So you can try:
+```
+ sudo pip install scikit-learn
+```
+to install scikit-learn as root user.
 
 ## Authors
 
