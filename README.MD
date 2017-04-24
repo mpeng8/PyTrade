@@ -134,6 +134,7 @@ To install from PyPI, type the following command into your terminal:
 ```
 pip install SQLAlchemy
 ```
+For other installation versions, please checkout [SQLAlchemy Index of Packages](https://pypi.python.org/pypi/SQLAlchemy)
 
 ### Dependent libraries that must be installed
 
