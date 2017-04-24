@@ -19,7 +19,7 @@ Additionally, PyTrade aims to become a valid source of information for investors
      - [NumPy](#numpy)
      - [pandas](#pandas)
      - [scikit-learn](#scikit-learn)
-     - [flask-sqlalchemy](#flask-sqlalchemy)
+     - [sqlalchemy](#sqlalchemy)
    - [Dependent libraries that must be installed](#dependent-libraries-that-must-be-installed)
    - [Download instructions](#download-instructions)
    - [Installation of actual application](#installation-of-actual-application)
@@ -125,17 +125,17 @@ pip install -U scikit-learn
 ```
 For other installation methods or other systems, please checkout [scikit-learn Download Page](http://scikit-learn.org/stable/install.html)
 
-#### flask-sqlalchemy
+#### sqlalchemy
 To install from Anaconda, type the following command into your terminal:
 ```
-conda install -c blaze flask-sqlalchemy=2.0
+conda install -c anaconda sqlalchemy=1.1.9
 ```
 
 To install from PyPI, type the following command into your terminal:
 ```
 pip install SQLAlchemy
 ```
-For other installation versions, please checkout [flask-sqlalchemy Index of Packages](http://flask-sqlalchemy.pocoo.org/2.1/)
+For other installation versions, please checkout [sqlalchemy Index of Packages](http://flask-sqlalchemy.pocoo.org/2.1/)
 
 ### Dependent libraries that must be installed
 
