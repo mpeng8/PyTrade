@@ -128,7 +128,7 @@ For other installation methods or other systems, please checkout [scikit-learn D
 #### flask-sqlalchemy
 To install from Anaconda, type the following command into your terminal:
 ```
-conda install -c anaconda sqlalchemy=1.1.9
+conda install -c blaze flask-sqlalchemy=2.0
 ```
 
 To install from PyPI, type the following command into your terminal:
