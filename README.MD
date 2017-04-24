@@ -47,6 +47,9 @@ This is the beta release of our website. The notes will introduce main features,
 1. Some stocks can not be fetched from Quandl, because of invalid stock name or insufficient data.
 2. Extensively searching for stocks symbol will report errors and the stock names cannot be auto-completed.
 3. Javascript 500 error: the menu toggle function cannot be used in stock information page.
+4. Hosting website on cloud is under construction
+5. Website security check still needed for implementing connection of the banking account
+6. Machine learning model optimization is still under improvement
 
 ## Install Guide
 
